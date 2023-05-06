@@ -1763,7 +1763,7 @@ func (p *GetRelationFriendListResponse) field2Length() int {
 	return l
 }
 
-func (p *SocialityServiceRelationArgs) FastRead(buf []byte) (int, error) {
+func (p *RelationServiceRelationArgs) FastRead(buf []byte) (int, error) {
 	var err error
 	var offset int
 	var l int
@@ -1825,7 +1825,7 @@ ReadStructBeginError:
 ReadFieldBeginError:
 	return offset, thrift.PrependError(fmt.Sprintf("%T read field %d begin error: ", p, fieldId), err)
 ReadFieldError:
-	return offset, thrift.PrependError(fmt.Sprintf("%T read field %d '%s' error: ", p, fieldId, fieldIDToName_SocialityServiceRelationArgs[fieldId]), err)
+	return offset, thrift.PrependError(fmt.Sprintf("%T read field %d '%s' error: ", p, fieldId, fieldIDToName_RelationServiceRelationArgs[fieldId]), err)
 SkipFieldError:
 	return offset, thrift.PrependError(fmt.Sprintf("%T field %d skip type %d error: ", p, fieldId, fieldTypeId), err)
 ReadFieldEndError:
@@ -1834,7 +1834,7 @@ ReadStructEndError:
 	return offset, thrift.PrependError(fmt.Sprintf("%T read struct end error: ", p), err)
 }
 
-func (p *SocialityServiceRelationArgs) FastReadField1(buf []byte) (int, error) {
+func (p *RelationServiceRelationArgs) FastReadField1(buf []byte) (int, error) {
 	offset := 0
 
 	tmp := NewRelationRequest()
@@ -1848,11 +1848,11 @@ func (p *SocialityServiceRelationArgs) FastReadField1(buf []byte) (int, error) {
 }
 
 // for compatibility
-func (p *SocialityServiceRelationArgs) FastWrite(buf []byte) int {
+func (p *RelationServiceRelationArgs) FastWrite(buf []byte) int {
 	return 0
 }
 
-func (p *SocialityServiceRelationArgs) FastWriteNocopy(buf []byte, binaryWriter bthrift.BinaryWriter) int {
+func (p *RelationServiceRelationArgs) FastWriteNocopy(buf []byte, binaryWriter bthrift.BinaryWriter) int {
 	offset := 0
 	offset += bthrift.Binary.WriteStructBegin(buf[offset:], "Relation_args")
 	if p != nil {
@@ -1863,7 +1863,7 @@ func (p *SocialityServiceRelationArgs) FastWriteNocopy(buf []byte, binaryWriter 
 	return offset
 }
 
-func (p *SocialityServiceRelationArgs) BLength() int {
+func (p *RelationServiceRelationArgs) BLength() int {
 	l := 0
 	l += bthrift.Binary.StructBeginLength("Relation_args")
 	if p != nil {
@@ -1874,7 +1874,7 @@ func (p *SocialityServiceRelationArgs) BLength() int {
 	return l
 }
 
-func (p *SocialityServiceRelationArgs) fastWriteField1(buf []byte, binaryWriter bthrift.BinaryWriter) int {
+func (p *RelationServiceRelationArgs) fastWriteField1(buf []byte, binaryWriter bthrift.BinaryWriter) int {
 	offset := 0
 	offset += bthrift.Binary.WriteFieldBegin(buf[offset:], "req", thrift.STRUCT, 1)
 	offset += p.Req.FastWriteNocopy(buf[offset:], binaryWriter)
@@ -1882,7 +1882,7 @@ func (p *SocialityServiceRelationArgs) fastWriteField1(buf []byte, binaryWriter 
 	return offset
 }
 
-func (p *SocialityServiceRelationArgs) field1Length() int {
+func (p *RelationServiceRelationArgs) field1Length() int {
 	l := 0
 	l += bthrift.Binary.FieldBeginLength("req", thrift.STRUCT, 1)
 	l += p.Req.BLength()
@@ -1890,7 +1890,7 @@ func (p *SocialityServiceRelationArgs) field1Length() int {
 	return l
 }
 
-func (p *SocialityServiceRelationResult) FastRead(buf []byte) (int, error) {
+func (p *RelationServiceRelationResult) FastRead(buf []byte) (int, error) {
 	var err error
 	var offset int
 	var l int
@@ -1952,7 +1952,7 @@ ReadStructBeginError:
 ReadFieldBeginError:
 	return offset, thrift.PrependError(fmt.Sprintf("%T read field %d begin error: ", p, fieldId), err)
 ReadFieldError:
-	return offset, thrift.PrependError(fmt.Sprintf("%T read field %d '%s' error: ", p, fieldId, fieldIDToName_SocialityServiceRelationResult[fieldId]), err)
+	return offset, thrift.PrependError(fmt.Sprintf("%T read field %d '%s' error: ", p, fieldId, fieldIDToName_RelationServiceRelationResult[fieldId]), err)
 SkipFieldError:
 	return offset, thrift.PrependError(fmt.Sprintf("%T field %d skip type %d error: ", p, fieldId, fieldTypeId), err)
 ReadFieldEndError:
@@ -1961,7 +1961,7 @@ ReadStructEndError:
 	return offset, thrift.PrependError(fmt.Sprintf("%T read struct end error: ", p), err)
 }
 
-func (p *SocialityServiceRelationResult) FastReadField0(buf []byte) (int, error) {
+func (p *RelationServiceRelationResult) FastReadField0(buf []byte) (int, error) {
 	offset := 0
 
 	tmp := NewRelationResponse()
@@ -1975,11 +1975,11 @@ func (p *SocialityServiceRelationResult) FastReadField0(buf []byte) (int, error)
 }
 
 // for compatibility
-func (p *SocialityServiceRelationResult) FastWrite(buf []byte) int {
+func (p *RelationServiceRelationResult) FastWrite(buf []byte) int {
 	return 0
 }
 
-func (p *SocialityServiceRelationResult) FastWriteNocopy(buf []byte, binaryWriter bthrift.BinaryWriter) int {
+func (p *RelationServiceRelationResult) FastWriteNocopy(buf []byte, binaryWriter bthrift.BinaryWriter) int {
 	offset := 0
 	offset += bthrift.Binary.WriteStructBegin(buf[offset:], "Relation_result")
 	if p != nil {
@@ -1990,7 +1990,7 @@ func (p *SocialityServiceRelationResult) FastWriteNocopy(buf []byte, binaryWrite
 	return offset
 }
 
-func (p *SocialityServiceRelationResult) BLength() int {
+func (p *RelationServiceRelationResult) BLength() int {
 	l := 0
 	l += bthrift.Binary.StructBeginLength("Relation_result")
 	if p != nil {
@@ -2001,7 +2001,7 @@ func (p *SocialityServiceRelationResult) BLength() int {
 	return l
 }
 
-func (p *SocialityServiceRelationResult) fastWriteField0(buf []byte, binaryWriter bthrift.BinaryWriter) int {
+func (p *RelationServiceRelationResult) fastWriteField0(buf []byte, binaryWriter bthrift.BinaryWriter) int {
 	offset := 0
 	if p.IsSetSuccess() {
 		offset += bthrift.Binary.WriteFieldBegin(buf[offset:], "success", thrift.STRUCT, 0)
@@ -2011,7 +2011,7 @@ func (p *SocialityServiceRelationResult) fastWriteField0(buf []byte, binaryWrite
 	return offset
 }
 
-func (p *SocialityServiceRelationResult) field0Length() int {
+func (p *RelationServiceRelationResult) field0Length() int {
 	l := 0
 	if p.IsSetSuccess() {
 		l += bthrift.Binary.FieldBeginLength("success", thrift.STRUCT, 0)
@@ -2021,7 +2021,7 @@ func (p *SocialityServiceRelationResult) field0Length() int {
 	return l
 }
 
-func (p *SocialityServiceRelationCancelArgs) FastRead(buf []byte) (int, error) {
+func (p *RelationServiceRelationCancelArgs) FastRead(buf []byte) (int, error) {
 	var err error
 	var offset int
 	var l int
@@ -2083,7 +2083,7 @@ ReadStructBeginError:
 ReadFieldBeginError:
 	return offset, thrift.PrependError(fmt.Sprintf("%T read field %d begin error: ", p, fieldId), err)
 ReadFieldError:
-	return offset, thrift.PrependError(fmt.Sprintf("%T read field %d '%s' error: ", p, fieldId, fieldIDToName_SocialityServiceRelationCancelArgs[fieldId]), err)
+	return offset, thrift.PrependError(fmt.Sprintf("%T read field %d '%s' error: ", p, fieldId, fieldIDToName_RelationServiceRelationCancelArgs[fieldId]), err)
 SkipFieldError:
 	return offset, thrift.PrependError(fmt.Sprintf("%T field %d skip type %d error: ", p, fieldId, fieldTypeId), err)
 ReadFieldEndError:
@@ -2092,7 +2092,7 @@ ReadStructEndError:
 	return offset, thrift.PrependError(fmt.Sprintf("%T read struct end error: ", p), err)
 }
 
-func (p *SocialityServiceRelationCancelArgs) FastReadField1(buf []byte) (int, error) {
+func (p *RelationServiceRelationCancelArgs) FastReadField1(buf []byte) (int, error) {
 	offset := 0
 
 	tmp := NewRelationCancelRequest()
@@ -2106,11 +2106,11 @@ func (p *SocialityServiceRelationCancelArgs) FastReadField1(buf []byte) (int, er
 }
 
 // for compatibility
-func (p *SocialityServiceRelationCancelArgs) FastWrite(buf []byte) int {
+func (p *RelationServiceRelationCancelArgs) FastWrite(buf []byte) int {
 	return 0
 }
 
-func (p *SocialityServiceRelationCancelArgs) FastWriteNocopy(buf []byte, binaryWriter bthrift.BinaryWriter) int {
+func (p *RelationServiceRelationCancelArgs) FastWriteNocopy(buf []byte, binaryWriter bthrift.BinaryWriter) int {
 	offset := 0
 	offset += bthrift.Binary.WriteStructBegin(buf[offset:], "RelationCancel_args")
 	if p != nil {
@@ -2121,7 +2121,7 @@ func (p *SocialityServiceRelationCancelArgs) FastWriteNocopy(buf []byte, binaryW
 	return offset
 }
 
-func (p *SocialityServiceRelationCancelArgs) BLength() int {
+func (p *RelationServiceRelationCancelArgs) BLength() int {
 	l := 0
 	l += bthrift.Binary.StructBeginLength("RelationCancel_args")
 	if p != nil {
@@ -2132,7 +2132,7 @@ func (p *SocialityServiceRelationCancelArgs) BLength() int {
 	return l
 }
 
-func (p *SocialityServiceRelationCancelArgs) fastWriteField1(buf []byte, binaryWriter bthrift.BinaryWriter) int {
+func (p *RelationServiceRelationCancelArgs) fastWriteField1(buf []byte, binaryWriter bthrift.BinaryWriter) int {
 	offset := 0
 	offset += bthrift.Binary.WriteFieldBegin(buf[offset:], "req", thrift.STRUCT, 1)
 	offset += p.Req.FastWriteNocopy(buf[offset:], binaryWriter)
@@ -2140,7 +2140,7 @@ func (p *SocialityServiceRelationCancelArgs) fastWriteField1(buf []byte, binaryW
 	return offset
 }
 
-func (p *SocialityServiceRelationCancelArgs) field1Length() int {
+func (p *RelationServiceRelationCancelArgs) field1Length() int {
 	l := 0
 	l += bthrift.Binary.FieldBeginLength("req", thrift.STRUCT, 1)
 	l += p.Req.BLength()
@@ -2148,7 +2148,7 @@ func (p *SocialityServiceRelationCancelArgs) field1Length() int {
 	return l
 }
 
-func (p *SocialityServiceRelationCancelResult) FastRead(buf []byte) (int, error) {
+func (p *RelationServiceRelationCancelResult) FastRead(buf []byte) (int, error) {
 	var err error
 	var offset int
 	var l int
@@ -2210,7 +2210,7 @@ ReadStructBeginError:
 ReadFieldBeginError:
 	return offset, thrift.PrependError(fmt.Sprintf("%T read field %d begin error: ", p, fieldId), err)
 ReadFieldError:
-	return offset, thrift.PrependError(fmt.Sprintf("%T read field %d '%s' error: ", p, fieldId, fieldIDToName_SocialityServiceRelationCancelResult[fieldId]), err)
+	return offset, thrift.PrependError(fmt.Sprintf("%T read field %d '%s' error: ", p, fieldId, fieldIDToName_RelationServiceRelationCancelResult[fieldId]), err)
 SkipFieldError:
 	return offset, thrift.PrependError(fmt.Sprintf("%T field %d skip type %d error: ", p, fieldId, fieldTypeId), err)
 ReadFieldEndError:
@@ -2219,7 +2219,7 @@ ReadStructEndError:
 	return offset, thrift.PrependError(fmt.Sprintf("%T read struct end error: ", p), err)
 }
 
-func (p *SocialityServiceRelationCancelResult) FastReadField0(buf []byte) (int, error) {
+func (p *RelationServiceRelationCancelResult) FastReadField0(buf []byte) (int, error) {
 	offset := 0
 
 	tmp := NewRelationCancelResponse()
@@ -2233,11 +2233,11 @@ func (p *SocialityServiceRelationCancelResult) FastReadField0(buf []byte) (int, 
 }
 
 // for compatibility
-func (p *SocialityServiceRelationCancelResult) FastWrite(buf []byte) int {
+func (p *RelationServiceRelationCancelResult) FastWrite(buf []byte) int {
 	return 0
 }
 
-func (p *SocialityServiceRelationCancelResult) FastWriteNocopy(buf []byte, binaryWriter bthrift.BinaryWriter) int {
+func (p *RelationServiceRelationCancelResult) FastWriteNocopy(buf []byte, binaryWriter bthrift.BinaryWriter) int {
 	offset := 0
 	offset += bthrift.Binary.WriteStructBegin(buf[offset:], "RelationCancel_result")
 	if p != nil {
@@ -2248,7 +2248,7 @@ func (p *SocialityServiceRelationCancelResult) FastWriteNocopy(buf []byte, binar
 	return offset
 }
 
-func (p *SocialityServiceRelationCancelResult) BLength() int {
+func (p *RelationServiceRelationCancelResult) BLength() int {
 	l := 0
 	l += bthrift.Binary.StructBeginLength("RelationCancel_result")
 	if p != nil {
@@ -2259,7 +2259,7 @@ func (p *SocialityServiceRelationCancelResult) BLength() int {
 	return l
 }
 
-func (p *SocialityServiceRelationCancelResult) fastWriteField0(buf []byte, binaryWriter bthrift.BinaryWriter) int {
+func (p *RelationServiceRelationCancelResult) fastWriteField0(buf []byte, binaryWriter bthrift.BinaryWriter) int {
 	offset := 0
 	if p.IsSetSuccess() {
 		offset += bthrift.Binary.WriteFieldBegin(buf[offset:], "success", thrift.STRUCT, 0)
@@ -2269,7 +2269,7 @@ func (p *SocialityServiceRelationCancelResult) fastWriteField0(buf []byte, binar
 	return offset
 }
 
-func (p *SocialityServiceRelationCancelResult) field0Length() int {
+func (p *RelationServiceRelationCancelResult) field0Length() int {
 	l := 0
 	if p.IsSetSuccess() {
 		l += bthrift.Binary.FieldBeginLength("success", thrift.STRUCT, 0)
@@ -2279,7 +2279,7 @@ func (p *SocialityServiceRelationCancelResult) field0Length() int {
 	return l
 }
 
-func (p *SocialityServiceGetFollowListArgs) FastRead(buf []byte) (int, error) {
+func (p *RelationServiceGetFollowListArgs) FastRead(buf []byte) (int, error) {
 	var err error
 	var offset int
 	var l int
@@ -2341,7 +2341,7 @@ ReadStructBeginError:
 ReadFieldBeginError:
 	return offset, thrift.PrependError(fmt.Sprintf("%T read field %d begin error: ", p, fieldId), err)
 ReadFieldError:
-	return offset, thrift.PrependError(fmt.Sprintf("%T read field %d '%s' error: ", p, fieldId, fieldIDToName_SocialityServiceGetFollowListArgs[fieldId]), err)
+	return offset, thrift.PrependError(fmt.Sprintf("%T read field %d '%s' error: ", p, fieldId, fieldIDToName_RelationServiceGetFollowListArgs[fieldId]), err)
 SkipFieldError:
 	return offset, thrift.PrependError(fmt.Sprintf("%T field %d skip type %d error: ", p, fieldId, fieldTypeId), err)
 ReadFieldEndError:
@@ -2350,7 +2350,7 @@ ReadStructEndError:
 	return offset, thrift.PrependError(fmt.Sprintf("%T read struct end error: ", p), err)
 }
 
-func (p *SocialityServiceGetFollowListArgs) FastReadField1(buf []byte) (int, error) {
+func (p *RelationServiceGetFollowListArgs) FastReadField1(buf []byte) (int, error) {
 	offset := 0
 
 	tmp := NewGetRelationFollowListRequest()
@@ -2364,11 +2364,11 @@ func (p *SocialityServiceGetFollowListArgs) FastReadField1(buf []byte) (int, err
 }
 
 // for compatibility
-func (p *SocialityServiceGetFollowListArgs) FastWrite(buf []byte) int {
+func (p *RelationServiceGetFollowListArgs) FastWrite(buf []byte) int {
 	return 0
 }
 
-func (p *SocialityServiceGetFollowListArgs) FastWriteNocopy(buf []byte, binaryWriter bthrift.BinaryWriter) int {
+func (p *RelationServiceGetFollowListArgs) FastWriteNocopy(buf []byte, binaryWriter bthrift.BinaryWriter) int {
 	offset := 0
 	offset += bthrift.Binary.WriteStructBegin(buf[offset:], "GetFollowList_args")
 	if p != nil {
@@ -2379,7 +2379,7 @@ func (p *SocialityServiceGetFollowListArgs) FastWriteNocopy(buf []byte, binaryWr
 	return offset
 }
 
-func (p *SocialityServiceGetFollowListArgs) BLength() int {
+func (p *RelationServiceGetFollowListArgs) BLength() int {
 	l := 0
 	l += bthrift.Binary.StructBeginLength("GetFollowList_args")
 	if p != nil {
@@ -2390,7 +2390,7 @@ func (p *SocialityServiceGetFollowListArgs) BLength() int {
 	return l
 }
 
-func (p *SocialityServiceGetFollowListArgs) fastWriteField1(buf []byte, binaryWriter bthrift.BinaryWriter) int {
+func (p *RelationServiceGetFollowListArgs) fastWriteField1(buf []byte, binaryWriter bthrift.BinaryWriter) int {
 	offset := 0
 	offset += bthrift.Binary.WriteFieldBegin(buf[offset:], "req", thrift.STRUCT, 1)
 	offset += p.Req.FastWriteNocopy(buf[offset:], binaryWriter)
@@ -2398,7 +2398,7 @@ func (p *SocialityServiceGetFollowListArgs) fastWriteField1(buf []byte, binaryWr
 	return offset
 }
 
-func (p *SocialityServiceGetFollowListArgs) field1Length() int {
+func (p *RelationServiceGetFollowListArgs) field1Length() int {
 	l := 0
 	l += bthrift.Binary.FieldBeginLength("req", thrift.STRUCT, 1)
 	l += p.Req.BLength()
@@ -2406,7 +2406,7 @@ func (p *SocialityServiceGetFollowListArgs) field1Length() int {
 	return l
 }
 
-func (p *SocialityServiceGetFollowListResult) FastRead(buf []byte) (int, error) {
+func (p *RelationServiceGetFollowListResult) FastRead(buf []byte) (int, error) {
 	var err error
 	var offset int
 	var l int
@@ -2468,7 +2468,7 @@ ReadStructBeginError:
 ReadFieldBeginError:
 	return offset, thrift.PrependError(fmt.Sprintf("%T read field %d begin error: ", p, fieldId), err)
 ReadFieldError:
-	return offset, thrift.PrependError(fmt.Sprintf("%T read field %d '%s' error: ", p, fieldId, fieldIDToName_SocialityServiceGetFollowListResult[fieldId]), err)
+	return offset, thrift.PrependError(fmt.Sprintf("%T read field %d '%s' error: ", p, fieldId, fieldIDToName_RelationServiceGetFollowListResult[fieldId]), err)
 SkipFieldError:
 	return offset, thrift.PrependError(fmt.Sprintf("%T field %d skip type %d error: ", p, fieldId, fieldTypeId), err)
 ReadFieldEndError:
@@ -2477,7 +2477,7 @@ ReadStructEndError:
 	return offset, thrift.PrependError(fmt.Sprintf("%T read struct end error: ", p), err)
 }
 
-func (p *SocialityServiceGetFollowListResult) FastReadField0(buf []byte) (int, error) {
+func (p *RelationServiceGetFollowListResult) FastReadField0(buf []byte) (int, error) {
 	offset := 0
 
 	tmp := NewGetRelationFollowListResponse()
@@ -2491,11 +2491,11 @@ func (p *SocialityServiceGetFollowListResult) FastReadField0(buf []byte) (int, e
 }
 
 // for compatibility
-func (p *SocialityServiceGetFollowListResult) FastWrite(buf []byte) int {
+func (p *RelationServiceGetFollowListResult) FastWrite(buf []byte) int {
 	return 0
 }
 
-func (p *SocialityServiceGetFollowListResult) FastWriteNocopy(buf []byte, binaryWriter bthrift.BinaryWriter) int {
+func (p *RelationServiceGetFollowListResult) FastWriteNocopy(buf []byte, binaryWriter bthrift.BinaryWriter) int {
 	offset := 0
 	offset += bthrift.Binary.WriteStructBegin(buf[offset:], "GetFollowList_result")
 	if p != nil {
@@ -2506,7 +2506,7 @@ func (p *SocialityServiceGetFollowListResult) FastWriteNocopy(buf []byte, binary
 	return offset
 }
 
-func (p *SocialityServiceGetFollowListResult) BLength() int {
+func (p *RelationServiceGetFollowListResult) BLength() int {
 	l := 0
 	l += bthrift.Binary.StructBeginLength("GetFollowList_result")
 	if p != nil {
@@ -2517,7 +2517,7 @@ func (p *SocialityServiceGetFollowListResult) BLength() int {
 	return l
 }
 
-func (p *SocialityServiceGetFollowListResult) fastWriteField0(buf []byte, binaryWriter bthrift.BinaryWriter) int {
+func (p *RelationServiceGetFollowListResult) fastWriteField0(buf []byte, binaryWriter bthrift.BinaryWriter) int {
 	offset := 0
 	if p.IsSetSuccess() {
 		offset += bthrift.Binary.WriteFieldBegin(buf[offset:], "success", thrift.STRUCT, 0)
@@ -2527,7 +2527,7 @@ func (p *SocialityServiceGetFollowListResult) fastWriteField0(buf []byte, binary
 	return offset
 }
 
-func (p *SocialityServiceGetFollowListResult) field0Length() int {
+func (p *RelationServiceGetFollowListResult) field0Length() int {
 	l := 0
 	if p.IsSetSuccess() {
 		l += bthrift.Binary.FieldBeginLength("success", thrift.STRUCT, 0)
@@ -2537,7 +2537,7 @@ func (p *SocialityServiceGetFollowListResult) field0Length() int {
 	return l
 }
 
-func (p *SocialityServiceGetFollowerListArgs) FastRead(buf []byte) (int, error) {
+func (p *RelationServiceGetFollowerListArgs) FastRead(buf []byte) (int, error) {
 	var err error
 	var offset int
 	var l int
@@ -2599,7 +2599,7 @@ ReadStructBeginError:
 ReadFieldBeginError:
 	return offset, thrift.PrependError(fmt.Sprintf("%T read field %d begin error: ", p, fieldId), err)
 ReadFieldError:
-	return offset, thrift.PrependError(fmt.Sprintf("%T read field %d '%s' error: ", p, fieldId, fieldIDToName_SocialityServiceGetFollowerListArgs[fieldId]), err)
+	return offset, thrift.PrependError(fmt.Sprintf("%T read field %d '%s' error: ", p, fieldId, fieldIDToName_RelationServiceGetFollowerListArgs[fieldId]), err)
 SkipFieldError:
 	return offset, thrift.PrependError(fmt.Sprintf("%T field %d skip type %d error: ", p, fieldId, fieldTypeId), err)
 ReadFieldEndError:
@@ -2608,7 +2608,7 @@ ReadStructEndError:
 	return offset, thrift.PrependError(fmt.Sprintf("%T read struct end error: ", p), err)
 }
 
-func (p *SocialityServiceGetFollowerListArgs) FastReadField1(buf []byte) (int, error) {
+func (p *RelationServiceGetFollowerListArgs) FastReadField1(buf []byte) (int, error) {
 	offset := 0
 
 	tmp := NewGetRelationFollowerListRequest()
@@ -2622,11 +2622,11 @@ func (p *SocialityServiceGetFollowerListArgs) FastReadField1(buf []byte) (int, e
 }
 
 // for compatibility
-func (p *SocialityServiceGetFollowerListArgs) FastWrite(buf []byte) int {
+func (p *RelationServiceGetFollowerListArgs) FastWrite(buf []byte) int {
 	return 0
 }
 
-func (p *SocialityServiceGetFollowerListArgs) FastWriteNocopy(buf []byte, binaryWriter bthrift.BinaryWriter) int {
+func (p *RelationServiceGetFollowerListArgs) FastWriteNocopy(buf []byte, binaryWriter bthrift.BinaryWriter) int {
 	offset := 0
 	offset += bthrift.Binary.WriteStructBegin(buf[offset:], "GetFollowerList_args")
 	if p != nil {
@@ -2637,7 +2637,7 @@ func (p *SocialityServiceGetFollowerListArgs) FastWriteNocopy(buf []byte, binary
 	return offset
 }
 
-func (p *SocialityServiceGetFollowerListArgs) BLength() int {
+func (p *RelationServiceGetFollowerListArgs) BLength() int {
 	l := 0
 	l += bthrift.Binary.StructBeginLength("GetFollowerList_args")
 	if p != nil {
@@ -2648,7 +2648,7 @@ func (p *SocialityServiceGetFollowerListArgs) BLength() int {
 	return l
 }
 
-func (p *SocialityServiceGetFollowerListArgs) fastWriteField1(buf []byte, binaryWriter bthrift.BinaryWriter) int {
+func (p *RelationServiceGetFollowerListArgs) fastWriteField1(buf []byte, binaryWriter bthrift.BinaryWriter) int {
 	offset := 0
 	offset += bthrift.Binary.WriteFieldBegin(buf[offset:], "req", thrift.STRUCT, 1)
 	offset += p.Req.FastWriteNocopy(buf[offset:], binaryWriter)
@@ -2656,7 +2656,7 @@ func (p *SocialityServiceGetFollowerListArgs) fastWriteField1(buf []byte, binary
 	return offset
 }
 
-func (p *SocialityServiceGetFollowerListArgs) field1Length() int {
+func (p *RelationServiceGetFollowerListArgs) field1Length() int {
 	l := 0
 	l += bthrift.Binary.FieldBeginLength("req", thrift.STRUCT, 1)
 	l += p.Req.BLength()
@@ -2664,7 +2664,7 @@ func (p *SocialityServiceGetFollowerListArgs) field1Length() int {
 	return l
 }
 
-func (p *SocialityServiceGetFollowerListResult) FastRead(buf []byte) (int, error) {
+func (p *RelationServiceGetFollowerListResult) FastRead(buf []byte) (int, error) {
 	var err error
 	var offset int
 	var l int
@@ -2726,7 +2726,7 @@ ReadStructBeginError:
 ReadFieldBeginError:
 	return offset, thrift.PrependError(fmt.Sprintf("%T read field %d begin error: ", p, fieldId), err)
 ReadFieldError:
-	return offset, thrift.PrependError(fmt.Sprintf("%T read field %d '%s' error: ", p, fieldId, fieldIDToName_SocialityServiceGetFollowerListResult[fieldId]), err)
+	return offset, thrift.PrependError(fmt.Sprintf("%T read field %d '%s' error: ", p, fieldId, fieldIDToName_RelationServiceGetFollowerListResult[fieldId]), err)
 SkipFieldError:
 	return offset, thrift.PrependError(fmt.Sprintf("%T field %d skip type %d error: ", p, fieldId, fieldTypeId), err)
 ReadFieldEndError:
@@ -2735,7 +2735,7 @@ ReadStructEndError:
 	return offset, thrift.PrependError(fmt.Sprintf("%T read struct end error: ", p), err)
 }
 
-func (p *SocialityServiceGetFollowerListResult) FastReadField0(buf []byte) (int, error) {
+func (p *RelationServiceGetFollowerListResult) FastReadField0(buf []byte) (int, error) {
 	offset := 0
 
 	tmp := NewGetRelationFollowerListResponse()
@@ -2749,11 +2749,11 @@ func (p *SocialityServiceGetFollowerListResult) FastReadField0(buf []byte) (int,
 }
 
 // for compatibility
-func (p *SocialityServiceGetFollowerListResult) FastWrite(buf []byte) int {
+func (p *RelationServiceGetFollowerListResult) FastWrite(buf []byte) int {
 	return 0
 }
 
-func (p *SocialityServiceGetFollowerListResult) FastWriteNocopy(buf []byte, binaryWriter bthrift.BinaryWriter) int {
+func (p *RelationServiceGetFollowerListResult) FastWriteNocopy(buf []byte, binaryWriter bthrift.BinaryWriter) int {
 	offset := 0
 	offset += bthrift.Binary.WriteStructBegin(buf[offset:], "GetFollowerList_result")
 	if p != nil {
@@ -2764,7 +2764,7 @@ func (p *SocialityServiceGetFollowerListResult) FastWriteNocopy(buf []byte, bina
 	return offset
 }
 
-func (p *SocialityServiceGetFollowerListResult) BLength() int {
+func (p *RelationServiceGetFollowerListResult) BLength() int {
 	l := 0
 	l += bthrift.Binary.StructBeginLength("GetFollowerList_result")
 	if p != nil {
@@ -2775,7 +2775,7 @@ func (p *SocialityServiceGetFollowerListResult) BLength() int {
 	return l
 }
 
-func (p *SocialityServiceGetFollowerListResult) fastWriteField0(buf []byte, binaryWriter bthrift.BinaryWriter) int {
+func (p *RelationServiceGetFollowerListResult) fastWriteField0(buf []byte, binaryWriter bthrift.BinaryWriter) int {
 	offset := 0
 	if p.IsSetSuccess() {
 		offset += bthrift.Binary.WriteFieldBegin(buf[offset:], "success", thrift.STRUCT, 0)
@@ -2785,7 +2785,7 @@ func (p *SocialityServiceGetFollowerListResult) fastWriteField0(buf []byte, bina
 	return offset
 }
 
-func (p *SocialityServiceGetFollowerListResult) field0Length() int {
+func (p *RelationServiceGetFollowerListResult) field0Length() int {
 	l := 0
 	if p.IsSetSuccess() {
 		l += bthrift.Binary.FieldBeginLength("success", thrift.STRUCT, 0)
@@ -2795,7 +2795,7 @@ func (p *SocialityServiceGetFollowerListResult) field0Length() int {
 	return l
 }
 
-func (p *SocialityServiceGetFriendListArgs) FastRead(buf []byte) (int, error) {
+func (p *RelationServiceGetFriendListArgs) FastRead(buf []byte) (int, error) {
 	var err error
 	var offset int
 	var l int
@@ -2857,7 +2857,7 @@ ReadStructBeginError:
 ReadFieldBeginError:
 	return offset, thrift.PrependError(fmt.Sprintf("%T read field %d begin error: ", p, fieldId), err)
 ReadFieldError:
-	return offset, thrift.PrependError(fmt.Sprintf("%T read field %d '%s' error: ", p, fieldId, fieldIDToName_SocialityServiceGetFriendListArgs[fieldId]), err)
+	return offset, thrift.PrependError(fmt.Sprintf("%T read field %d '%s' error: ", p, fieldId, fieldIDToName_RelationServiceGetFriendListArgs[fieldId]), err)
 SkipFieldError:
 	return offset, thrift.PrependError(fmt.Sprintf("%T field %d skip type %d error: ", p, fieldId, fieldTypeId), err)
 ReadFieldEndError:
@@ -2866,7 +2866,7 @@ ReadStructEndError:
 	return offset, thrift.PrependError(fmt.Sprintf("%T read struct end error: ", p), err)
 }
 
-func (p *SocialityServiceGetFriendListArgs) FastReadField1(buf []byte) (int, error) {
+func (p *RelationServiceGetFriendListArgs) FastReadField1(buf []byte) (int, error) {
 	offset := 0
 
 	tmp := NewGetRelationFriendListRequest()
@@ -2880,11 +2880,11 @@ func (p *SocialityServiceGetFriendListArgs) FastReadField1(buf []byte) (int, err
 }
 
 // for compatibility
-func (p *SocialityServiceGetFriendListArgs) FastWrite(buf []byte) int {
+func (p *RelationServiceGetFriendListArgs) FastWrite(buf []byte) int {
 	return 0
 }
 
-func (p *SocialityServiceGetFriendListArgs) FastWriteNocopy(buf []byte, binaryWriter bthrift.BinaryWriter) int {
+func (p *RelationServiceGetFriendListArgs) FastWriteNocopy(buf []byte, binaryWriter bthrift.BinaryWriter) int {
 	offset := 0
 	offset += bthrift.Binary.WriteStructBegin(buf[offset:], "GetFriendList_args")
 	if p != nil {
@@ -2895,7 +2895,7 @@ func (p *SocialityServiceGetFriendListArgs) FastWriteNocopy(buf []byte, binaryWr
 	return offset
 }
 
-func (p *SocialityServiceGetFriendListArgs) BLength() int {
+func (p *RelationServiceGetFriendListArgs) BLength() int {
 	l := 0
 	l += bthrift.Binary.StructBeginLength("GetFriendList_args")
 	if p != nil {
@@ -2906,7 +2906,7 @@ func (p *SocialityServiceGetFriendListArgs) BLength() int {
 	return l
 }
 
-func (p *SocialityServiceGetFriendListArgs) fastWriteField1(buf []byte, binaryWriter bthrift.BinaryWriter) int {
+func (p *RelationServiceGetFriendListArgs) fastWriteField1(buf []byte, binaryWriter bthrift.BinaryWriter) int {
 	offset := 0
 	offset += bthrift.Binary.WriteFieldBegin(buf[offset:], "req", thrift.STRUCT, 1)
 	offset += p.Req.FastWriteNocopy(buf[offset:], binaryWriter)
@@ -2914,7 +2914,7 @@ func (p *SocialityServiceGetFriendListArgs) fastWriteField1(buf []byte, binaryWr
 	return offset
 }
 
-func (p *SocialityServiceGetFriendListArgs) field1Length() int {
+func (p *RelationServiceGetFriendListArgs) field1Length() int {
 	l := 0
 	l += bthrift.Binary.FieldBeginLength("req", thrift.STRUCT, 1)
 	l += p.Req.BLength()
@@ -2922,7 +2922,7 @@ func (p *SocialityServiceGetFriendListArgs) field1Length() int {
 	return l
 }
 
-func (p *SocialityServiceGetFriendListResult) FastRead(buf []byte) (int, error) {
+func (p *RelationServiceGetFriendListResult) FastRead(buf []byte) (int, error) {
 	var err error
 	var offset int
 	var l int
@@ -2984,7 +2984,7 @@ ReadStructBeginError:
 ReadFieldBeginError:
 	return offset, thrift.PrependError(fmt.Sprintf("%T read field %d begin error: ", p, fieldId), err)
 ReadFieldError:
-	return offset, thrift.PrependError(fmt.Sprintf("%T read field %d '%s' error: ", p, fieldId, fieldIDToName_SocialityServiceGetFriendListResult[fieldId]), err)
+	return offset, thrift.PrependError(fmt.Sprintf("%T read field %d '%s' error: ", p, fieldId, fieldIDToName_RelationServiceGetFriendListResult[fieldId]), err)
 SkipFieldError:
 	return offset, thrift.PrependError(fmt.Sprintf("%T field %d skip type %d error: ", p, fieldId, fieldTypeId), err)
 ReadFieldEndError:
@@ -2993,7 +2993,7 @@ ReadStructEndError:
 	return offset, thrift.PrependError(fmt.Sprintf("%T read struct end error: ", p), err)
 }
 
-func (p *SocialityServiceGetFriendListResult) FastReadField0(buf []byte) (int, error) {
+func (p *RelationServiceGetFriendListResult) FastReadField0(buf []byte) (int, error) {
 	offset := 0
 
 	tmp := NewGetRelationFriendListResponse()
@@ -3007,11 +3007,11 @@ func (p *SocialityServiceGetFriendListResult) FastReadField0(buf []byte) (int, e
 }
 
 // for compatibility
-func (p *SocialityServiceGetFriendListResult) FastWrite(buf []byte) int {
+func (p *RelationServiceGetFriendListResult) FastWrite(buf []byte) int {
 	return 0
 }
 
-func (p *SocialityServiceGetFriendListResult) FastWriteNocopy(buf []byte, binaryWriter bthrift.BinaryWriter) int {
+func (p *RelationServiceGetFriendListResult) FastWriteNocopy(buf []byte, binaryWriter bthrift.BinaryWriter) int {
 	offset := 0
 	offset += bthrift.Binary.WriteStructBegin(buf[offset:], "GetFriendList_result")
 	if p != nil {
@@ -3022,7 +3022,7 @@ func (p *SocialityServiceGetFriendListResult) FastWriteNocopy(buf []byte, binary
 	return offset
 }
 
-func (p *SocialityServiceGetFriendListResult) BLength() int {
+func (p *RelationServiceGetFriendListResult) BLength() int {
 	l := 0
 	l += bthrift.Binary.StructBeginLength("GetFriendList_result")
 	if p != nil {
@@ -3033,7 +3033,7 @@ func (p *SocialityServiceGetFriendListResult) BLength() int {
 	return l
 }
 
-func (p *SocialityServiceGetFriendListResult) fastWriteField0(buf []byte, binaryWriter bthrift.BinaryWriter) int {
+func (p *RelationServiceGetFriendListResult) fastWriteField0(buf []byte, binaryWriter bthrift.BinaryWriter) int {
 	offset := 0
 	if p.IsSetSuccess() {
 		offset += bthrift.Binary.WriteFieldBegin(buf[offset:], "success", thrift.STRUCT, 0)
@@ -3043,7 +3043,7 @@ func (p *SocialityServiceGetFriendListResult) fastWriteField0(buf []byte, binary
 	return offset
 }
 
-func (p *SocialityServiceGetFriendListResult) field0Length() int {
+func (p *RelationServiceGetFriendListResult) field0Length() int {
 	l := 0
 	if p.IsSetSuccess() {
 		l += bthrift.Binary.FieldBeginLength("success", thrift.STRUCT, 0)
@@ -3053,42 +3053,42 @@ func (p *SocialityServiceGetFriendListResult) field0Length() int {
 	return l
 }
 
-func (p *SocialityServiceRelationArgs) GetFirstArgument() interface{} {
+func (p *RelationServiceRelationArgs) GetFirstArgument() interface{} {
 	return p.Req
 }
 
-func (p *SocialityServiceRelationResult) GetResult() interface{} {
+func (p *RelationServiceRelationResult) GetResult() interface{} {
 	return p.Success
 }
 
-func (p *SocialityServiceRelationCancelArgs) GetFirstArgument() interface{} {
+func (p *RelationServiceRelationCancelArgs) GetFirstArgument() interface{} {
 	return p.Req
 }
 
-func (p *SocialityServiceRelationCancelResult) GetResult() interface{} {
+func (p *RelationServiceRelationCancelResult) GetResult() interface{} {
 	return p.Success
 }
 
-func (p *SocialityServiceGetFollowListArgs) GetFirstArgument() interface{} {
+func (p *RelationServiceGetFollowListArgs) GetFirstArgument() interface{} {
 	return p.Req
 }
 
-func (p *SocialityServiceGetFollowListResult) GetResult() interface{} {
+func (p *RelationServiceGetFollowListResult) GetResult() interface{} {
 	return p.Success
 }
 
-func (p *SocialityServiceGetFollowerListArgs) GetFirstArgument() interface{} {
+func (p *RelationServiceGetFollowerListArgs) GetFirstArgument() interface{} {
 	return p.Req
 }
 
-func (p *SocialityServiceGetFollowerListResult) GetResult() interface{} {
+func (p *RelationServiceGetFollowerListResult) GetResult() interface{} {
 	return p.Success
 }
 
-func (p *SocialityServiceGetFriendListArgs) GetFirstArgument() interface{} {
+func (p *RelationServiceGetFriendListArgs) GetFirstArgument() interface{} {
 	return p.Req
 }
 
-func (p *SocialityServiceGetFriendListResult) GetResult() interface{} {
+func (p *RelationServiceGetFriendListResult) GetResult() interface{} {
 	return p.Success
 }

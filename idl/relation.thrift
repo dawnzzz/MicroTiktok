@@ -66,7 +66,7 @@ struct get_relation_friend_list_response {
 }
 
 
-service SocialityService {
+service RelationService {
     relation_response Relation(1: relation_request req),                        // 关注
     relation_cancel_response RelationCancel(1: relation_cancel_request req),    // 取消关注
 
