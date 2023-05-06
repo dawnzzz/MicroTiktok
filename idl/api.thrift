@@ -217,33 +217,42 @@ struct message_action_response {
     1: base.base_response base_resp(api.json="inline")
 }
 
-// API网关
-service APIGatewayService {
+service UserAPIService {
     // 用户API
-    user_register_reponse Register(1: user_register_request req)(api.post="/douyin/user/register/");    // 用户注册
-    user_login_response Login(1: user_login_request req)(api.post="/douyin/user/login/");               // 用户登录
-    user_response GetUserInfo(1: user_request req)(api.get="/douyin/user/");                            // 查询用户信息
+    user_register_reponse Register(1: user_register_request req)(api.post="/douyin/user/register");    // 用户注册
+    user_login_response Login(1: user_login_request req)(api.post="/douyin/user/login");               // 用户登录
+    user_response GetUserInfo(1: user_request req)(api.get="/douyin/user");                            // 查询用户信息
+}
 
+service VideoAPIService {
     // 视频API
-    feed_response Feed (1: feed_request req)(api.get="/douyin/feed/");                                          // 推送视频
-    publish_action_response PublishVideo (1: publish_action_request req)(api.post="/douyin/publish/action/");   // 发布视频
-    publish_list_response VideoList (1: publish_list_request req)(api.get="/douyin/publish/list/");             // 获取用户视频列表
+    feed_response Feed (1: feed_request req)(api.get="/douyin/feed");                                          // 推送视频
+    publish_action_response PublishVideo (1: publish_action_request req)(api.post="/douyin/publish/action");   // 发布视频
+    publish_list_response VideoList (1: publish_list_request req)(api.get="/douyin/publish/list");             // 获取用户视频列表
+}
 
+service FavoriteAPIService {
     // 点赞API
-    favorite_action_response Favorite(1: favorite_action_request req)(api.post="/douyin/favorite/action/"); // 点赞/取消视频
-    favorite_list_response FavoriteList(1: favorite_list_request req)(api.get="/douyin/favorite/list/");    // 获取点赞列表
+    favorite_action_response Favorite(1: favorite_action_request req)(api.post="/douyin/favorite/action"); // 点赞/取消视频
+    favorite_list_response FavoriteList(1: favorite_list_request req)(api.get="/douyin/favorite/list");    // 获取点赞列表
+}
 
+service CommentAPIService {
     // 评论API
-    comment_action_response Comment(1: comment_action_request req)(api.post="/douyin/comment/action/");     // 评论视频
-    comment_list_response CommentList(1: comment_list_request req)(api.get="/douyin/comment/list/");        // 获取视频评论列表
+    comment_action_response Comment(1: comment_action_request req)(api.post="/douyin/comment/action");     // 评论视频
+    comment_list_response CommentList(1: comment_list_request req)(api.get="/douyin/comment/list");        // 获取视频评论列表
+}
 
+service ReltationAPIService {
     // 关系API
     relation_action_response Action(1: relation_action_request req)(api.post="/douyin/relation/action/");                           // 关注/取关
-    relation_follow_list_response FollowingList(1: relation_follow_list_request req)(api.get="/douyin/relation/follow/list/");      // 获取关注列表
-    relation_follower_list_response FollowerList(1: relation_follower_list_request req)(api.get="/douyin/relation/follower/list/"); // 获取粉丝列表
-    relation_friend_list_response FriendList(1: relation_friend_list_request req)(api.get="/douyin/relation/friend/list/");         // 获取朋友列表（互关）
+    relation_follow_list_response FollowingList(1: relation_follow_list_request req)(api.get="/douyin/relation/follow/list");      // 获取关注列表
+    relation_follower_list_response FollowerList(1: relation_follower_list_request req)(api.get="/douyin/relation/follower/list"); // 获取粉丝列表
+    relation_friend_list_response FriendList(1: relation_friend_list_request req)(api.get="/douyin/relation/friend/list");         // 获取朋友列表（互关）
+}
 
+service MessageAPIService {
     // 消息API
-    message_chat_response ChatHistory(1: message_chat_request req)(api.get="/douyin/message/chat/");        // 获取聊天记录
-    message_action_response SentMessage(1: message_action_request req)(api.post="/douyin/message/action/"); // 发送消息
+    message_chat_response ChatHistory(1: message_chat_request req)(api.get="/douyin/message/chat");        // 获取聊天记录
+    message_action_response SentMessage(1: message_action_request req)(api.post="/douyin/message/action"); // 发送消息
 }
