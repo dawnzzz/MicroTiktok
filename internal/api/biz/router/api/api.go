@@ -4,7 +4,7 @@ package api
 
 import (
 	"github.com/cloudwego/hertz/pkg/app/server"
-	api "github.com/dawnzzz/MicroTiktok/biz/handler/api"
+	api "github.com/dawnzzz/MicroTiktok/internal/api/biz/handler/api"
 )
 
 /*
