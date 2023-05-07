@@ -9,11 +9,11 @@ struct base_response {
 struct User {
     1: i64 id                                               // 用户id
     2: string name                                          // 用户名
-    3: SocialInfo socialInfo(api.json="inline")             // 关注数量、粉丝数量、是否被关注
+    3: SocialInfo socialInfo(api.body="inline")             // 关注数量、粉丝数量、是否被关注
     4: string avatar,                                       // 用户头像
     5: string background_image,                             // 用户背景图
     6: string signature,                                    // 用户签名
-    7: UserInteractInfo userInteracInfo(api.json="inline")  // 用户被赞、发布作品数量、点赞数量
+    7: UserInteractInfo userInteracInfo(api.body="inline")  // 用户被赞、发布作品数量、点赞数量
 }
 
 // 关注数量、粉丝数量、是否被关注
@@ -36,7 +36,7 @@ struct Video {
     2: User author                                              // 视频作者
     3: string play_url                                          // 视频url
     4: string cover_url                                         // 封面
-    5: VideoInteractInfo videoInteractInfo(api.json="inline")   // 视频的点赞数量、评论数量、是否点赞
+    5: VideoInteractInfo videoInteractInfo(api.body="inline")   // 视频的点赞数量、评论数量、是否点赞
     6: string title                                             // 视频标题
 }
 
@@ -56,7 +56,7 @@ struct Comment {
 }
 
 struct FriendUser {
-    1: User user(api.json="inline") // 用户信息
+    1: User user(api.body="inline") // 用户信息
     2: string message               // 最后一次消息
     3: i64 msgType                  // 消息类型：0表示接收消息，1表示发送消息
 }

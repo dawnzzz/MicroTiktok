@@ -194,11 +194,11 @@ func (p *BaseResponse) String() string {
 type User struct {
 	ID              int64             `thrift:"id,1" form:"id" json:"id" query:"id"`
 	Name            string            `thrift:"name,2" form:"name" json:"name" query:"name"`
-	SocialInfo      *SocialInfo       `thrift:"socialInfo,3" form:"socialInfo" json:"socialInfo" query:"socialInfo"`
+	SocialInfo      *SocialInfo       `thrift:"socialInfo,3" form:"socialInfo" json:"inline" query:"socialInfo"`
 	Avatar          string            `thrift:"avatar,4" form:"avatar" json:"avatar" query:"avatar"`
 	BackgroundImage string            `thrift:"background_image,5" form:"background_image" json:"background_image" query:"background_image"`
 	Signature       string            `thrift:"signature,6" form:"signature" json:"signature" query:"signature"`
-	UserInteracInfo *UserInteractInfo `thrift:"userInteracInfo,7" form:"userInteracInfo" json:"userInteracInfo" query:"userInteracInfo"`
+	UserInteracInfo *UserInteractInfo `thrift:"userInteracInfo,7" form:"userInteracInfo" json:"inline" query:"userInteracInfo"`
 }
 
 func NewUser() *User {
@@ -1086,7 +1086,7 @@ type Video struct {
 	Author            *User              `thrift:"author,2" form:"author" json:"author" query:"author"`
 	PlayURL           string             `thrift:"play_url,3" form:"play_url" json:"play_url" query:"play_url"`
 	CoverURL          string             `thrift:"cover_url,4" form:"cover_url" json:"cover_url" query:"cover_url"`
-	VideoInteractInfo *VideoInteractInfo `thrift:"videoInteractInfo,5" form:"videoInteractInfo" json:"videoInteractInfo" query:"videoInteractInfo"`
+	VideoInteractInfo *VideoInteractInfo `thrift:"videoInteractInfo,5" form:"videoInteractInfo" json:"inline" query:"videoInteractInfo"`
 	Title             string             `thrift:"title,6" form:"title" json:"title" query:"title"`
 }
 
@@ -1979,7 +1979,7 @@ func (p *Comment) String() string {
 }
 
 type FriendUser struct {
-	User    *User  `thrift:"user,1" form:"user" json:"user" query:"user"`
+	User    *User  `thrift:"user,1" form:"user" json:"inline" query:"user"`
 	Message string `thrift:"message,2" form:"message" json:"message" query:"message"`
 	MsgType int64  `thrift:"msgType,3" form:"msgType" json:"msgType" query:"msgType"`
 }
