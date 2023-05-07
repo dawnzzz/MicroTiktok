@@ -25,7 +25,8 @@ func Register(ctx context.Context, c *app.RequestContext) {
 	// 验证参数
 	err = c.BindAndValidate(&req)
 	if err != nil {
-		resp.BaseResp = e.MakeApiBaseResp(e.ErrBadRequest)
+		resp.StatusCode = e.ErrBadRequest
+		resp.StatusMsg = e.GetErrMsg(resp.StatusCode)
 		c.JSON(consts.StatusOK, resp)
 		return
 	}
@@ -36,13 +37,15 @@ func Register(ctx context.Context, c *app.RequestContext) {
 		Password: req.Password,
 	})
 	if err != nil {
-		resp.BaseResp = e.MakeApiBaseResp(registerResponse.BaseResp.StatusCode)
+		resp.StatusCode = e.ErrBadRequest
+		resp.StatusMsg = e.GetErrMsg(resp.StatusCode)
 		c.JSON(consts.StatusOK, resp)
 		return
 	}
 
 	// 注册成功
-	resp.BaseResp = e.MakeApiBaseResp(e.Success)
+	resp.StatusCode = e.Success
+	resp.StatusMsg = e.GetErrMsg(resp.StatusCode)
 	resp.UserID = registerResponse.UserId
 	resp.Token = registerResponse.Token
 	c.JSON(consts.StatusOK, resp)
@@ -59,7 +62,8 @@ func Login(ctx context.Context, c *app.RequestContext) {
 	// 验证参数
 	err = c.BindAndValidate(&req)
 	if err != nil {
-		resp.BaseResp = e.MakeApiBaseResp(e.ErrBadRequest)
+		resp.StatusCode = e.ErrBadRequest
+		resp.StatusMsg = e.GetErrMsg(resp.StatusCode)
 		c.JSON(consts.StatusOK, resp)
 		return
 	}
@@ -70,13 +74,15 @@ func Login(ctx context.Context, c *app.RequestContext) {
 		Password: req.Password,
 	})
 	if err != nil {
-		resp.BaseResp = e.MakeApiBaseResp(loginResponse.BaseResp.StatusCode)
+		resp.StatusCode = e.ErrBadRequest
+		resp.StatusMsg = e.GetErrMsg(resp.StatusCode)
 		c.JSON(consts.StatusOK, resp)
 		return
 	}
 
 	// 登录成功
-	resp.BaseResp = e.MakeApiBaseResp(e.Success)
+	resp.StatusCode = e.Success
+	resp.StatusMsg = e.GetErrMsg(resp.StatusCode)
 	resp.UserID = loginResponse.UserId
 	resp.Token = loginResponse.Token
 	c.JSON(consts.StatusOK, resp)
@@ -93,7 +99,8 @@ func GetUserInfo(ctx context.Context, c *app.RequestContext) {
 	// 验证参数
 	err = c.BindAndValidate(&req)
 	if err != nil {
-		resp.BaseResp = e.MakeApiBaseResp(e.ErrBadRequest)
+		resp.StatusCode = e.ErrBadRequest
+		resp.StatusMsg = e.GetErrMsg(resp.StatusCode)
 		c.JSON(consts.StatusOK, resp)
 		return
 	}
@@ -101,13 +108,15 @@ func GetUserInfo(ctx context.Context, c *app.RequestContext) {
 	// 从上下文中获取view id（token解析出的id）
 	raw, ok := c.Get(global.HzViewerIDKey)
 	if !ok {
-		resp.BaseResp = e.MakeApiBaseResp(e.ErrBadRequest)
+		resp.StatusCode = e.ErrBadRequest
+		resp.StatusMsg = e.GetErrMsg(resp.StatusCode)
 		c.JSON(consts.StatusOK, resp)
 		return
 	}
 	viewerID, ok := raw.(int64)
 	if !ok {
-		resp.BaseResp = e.MakeApiBaseResp(e.ErrBadRequest)
+		resp.StatusCode = e.ErrBadRequest
+		resp.StatusMsg = e.GetErrMsg(resp.StatusCode)
 		c.JSON(consts.StatusOK, resp)
 		return
 	}
@@ -118,13 +127,15 @@ func GetUserInfo(ctx context.Context, c *app.RequestContext) {
 		OwnerId:  req.UserID,
 	})
 	if err != nil {
-		resp.BaseResp = e.MakeApiBaseResp(userResponse.BaseResp.StatusCode)
+		resp.StatusCode = e.ErrBadRequest
+		resp.StatusMsg = e.GetErrMsg(resp.StatusCode)
 		c.JSON(consts.StatusOK, resp)
 		return
 	}
 
 	// 获取用户信息成功
-	resp.BaseResp = e.MakeApiBaseResp(e.Success)
+	resp.StatusCode = e.Success
+	resp.StatusMsg = e.GetErrMsg(resp.StatusCode)
 	resp.User = util.RpcUserConvertToApiUser(userResponse.User)
 	c.JSON(consts.StatusOK, resp)
 }
