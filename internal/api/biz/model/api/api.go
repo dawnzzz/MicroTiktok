@@ -196,7 +196,7 @@ func (p *UserRegisterRequest) String() string {
 }
 
 type UserRegisterReponse struct {
-	BaseResp *base.BaseResponse `thrift:"base_resp,1" form:"base_resp" json:"base_resp" query:"base_resp"`
+	BaseResp *base.BaseResponse `thrift:"base_resp,1" form:"base_resp" json:"inline" query:"base_resp"`
 	UserID   int64              `thrift:"user_id,2" form:"user_id" json:"user_id" query:"user_id"`
 	Token    string             `thrift:"token,3" form:"token" json:"token" query:"token"`
 }
@@ -619,7 +619,7 @@ func (p *UserLoginRequest) String() string {
 }
 
 type UserLoginResponse struct {
-	BaseResp *base.BaseResponse `thrift:"base_resp,1" form:"base_resp" json:"base_resp" query:"base_resp"`
+	BaseResp *base.BaseResponse `thrift:"base_resp,1" form:"base_resp" json:"inline" query:"base_resp"`
 	UserID   int64              `thrift:"user_id,2" form:"user_id" json:"user_id" query:"user_id"`
 	Token    string             `thrift:"token,3" form:"token" json:"token" query:"token"`
 }
@@ -1042,7 +1042,7 @@ func (p *UserRequest) String() string {
 }
 
 type UserResponse struct {
-	BaseResp *base.BaseResponse `thrift:"base_resp,1" form:"base_resp" json:"base_resp" query:"base_resp"`
+	BaseResp *base.BaseResponse `thrift:"base_resp,1" form:"base_resp" json:"inline" query:"base_resp"`
 	User     *base.User         `thrift:"user,2" form:"user" json:"user" query:"user"`
 }
 
@@ -1427,7 +1427,7 @@ func (p *FeedRequest) String() string {
 }
 
 type FeedResponse struct {
-	BaseResp  *base.BaseResponse `thrift:"base_resp,1" form:"base_resp" json:"base_resp" query:"base_resp"`
+	BaseResp  *base.BaseResponse `thrift:"base_resp,1" form:"base_resp" json:"inline" query:"base_resp"`
 	VideoList []*base.Video      `thrift:"video_list,2" form:"video_list" json:"video_list" query:"video_list"`
 	NextTime  int64              `thrift:"next_time,3" form:"next_time" json:"next_time" query:"next_time"`
 }
@@ -1869,7 +1869,7 @@ func (p *PublishActionRequest) String() string {
 }
 
 type PublishActionResponse struct {
-	BaseResp *base.BaseResponse `thrift:"base_resp,1" form:"base_resp" json:"base_resp" query:"base_resp"`
+	BaseResp *base.BaseResponse `thrift:"base_resp,1" form:"base_resp" json:"inline" query:"base_resp"`
 }
 
 func NewPublishActionResponse() *PublishActionResponse {
@@ -2200,7 +2200,7 @@ func (p *PublishListRequest) String() string {
 }
 
 type PublishListResponse struct {
-	BaseResp  *base.BaseResponse `thrift:"base_resp,1" form:"base_resp" json:"base_resp" query:"base_resp"`
+	BaseResp  *base.BaseResponse `thrift:"base_resp,1" form:"base_resp" json:"inline" query:"base_resp"`
 	VideoList []*base.Video      `thrift:"video_list,2" form:"video_list" json:"video_list" query:"video_list"`
 }
 
@@ -2642,7 +2642,7 @@ func (p *FavoriteActionRequest) String() string {
 }
 
 type FavoriteActionResponse struct {
-	BaseResp *base.BaseResponse `thrift:"base_resp,1" form:"base_resp" json:"base_resp" query:"base_resp"`
+	BaseResp *base.BaseResponse `thrift:"base_resp,1" form:"base_resp" json:"inline" query:"base_resp"`
 }
 
 func NewFavoriteActionResponse() *FavoriteActionResponse {
@@ -2973,7 +2973,7 @@ func (p *FavoriteListRequest) String() string {
 }
 
 type FavoriteListResponse struct {
-	BaseResp  *base.BaseResponse `thrift:"base_resp,1" form:"base_resp" json:"base_resp" query:"base_resp"`
+	BaseResp  *base.BaseResponse `thrift:"base_resp,1" form:"base_resp" json:"inline" query:"base_resp"`
 	VideoList []*base.Video      `thrift:"video_list,2" form:"video_list" json:"video_list" query:"video_list"`
 }
 
@@ -3507,7 +3507,7 @@ func (p *CommentActionRequest) String() string {
 }
 
 type CommentActionResponse struct {
-	BaseResp *base.BaseResponse `thrift:"base_resp,1" form:"base_resp" json:"base_resp" query:"base_resp"`
+	BaseResp *base.BaseResponse `thrift:"base_resp,1" form:"base_resp" json:"inline" query:"base_resp"`
 	Comment  *base.Comment      `thrift:"comment,2" form:"comment" json:"comment" query:"comment"`
 }
 
@@ -3892,7 +3892,7 @@ func (p *CommentListRequest) String() string {
 }
 
 type CommentListResponse struct {
-	BaseResp    *base.BaseResponse `thrift:"base_resp,1" form:"base_resp" json:"base_resp" query:"base_resp"`
+	BaseResp    *base.BaseResponse `thrift:"base_resp,1" form:"base_resp" json:"inline" query:"base_resp"`
 	CommentList []*base.Comment    `thrift:"comment_list,2" form:"comment_list" json:"comment_list" query:"comment_list"`
 }
 
@@ -4334,7 +4334,7 @@ func (p *RelationActionRequest) String() string {
 }
 
 type RelationActionResponse struct {
-	BaseResp *base.BaseResponse `thrift:"base_resp,1" form:"base_resp" json:"base_resp" query:"base_resp"`
+	BaseResp *base.BaseResponse `thrift:"base_resp,1" form:"base_resp" json:"inline" query:"base_resp"`
 }
 
 func NewRelationActionResponse() *RelationActionResponse {
@@ -4665,7 +4665,7 @@ func (p *RelationFollowListRequest) String() string {
 }
 
 type RelationFollowListResponse struct {
-	BaseResp *base.BaseResponse `thrift:"base_resp,1" form:"base_resp" json:"base_resp" query:"base_resp"`
+	BaseResp *base.BaseResponse `thrift:"base_resp,1" form:"base_resp" json:"inline" query:"base_resp"`
 	UserList []*base.User       `thrift:"user_list,2" form:"user_list" json:"user_list" query:"user_list"`
 }
 
@@ -5061,7 +5061,7 @@ func (p *RelationFollowerListRequest) String() string {
 }
 
 type RelationFollowerListResponse struct {
-	BaseResp *base.BaseResponse `thrift:"base_resp,1" form:"base_resp" json:"base_resp" query:"base_resp"`
+	BaseResp *base.BaseResponse `thrift:"base_resp,1" form:"base_resp" json:"inline" query:"base_resp"`
 	UserList []*base.User       `thrift:"user_list,2" form:"user_list" json:"user_list" query:"user_list"`
 }
 
@@ -5457,7 +5457,7 @@ func (p *RelationFriendListRequest) String() string {
 }
 
 type RelationFriendListResponse struct {
-	BaseResp *base.BaseResponse `thrift:"base_resp,1" form:"base_resp" json:"base_resp" query:"base_resp"`
+	BaseResp *base.BaseResponse `thrift:"base_resp,1" form:"base_resp" json:"inline" query:"base_resp"`
 	UserList []*base.FriendUser `thrift:"user_list,2" form:"user_list" json:"user_list" query:"user_list"`
 }
 
@@ -5899,7 +5899,7 @@ func (p *MessageChatRequest) String() string {
 }
 
 type MessageChatResponse struct {
-	BaseResp    *base.BaseResponse `thrift:"base_resp,1" form:"base_resp" json:"base_resp" query:"base_resp"`
+	BaseResp    *base.BaseResponse `thrift:"base_resp,1" form:"base_resp" json:"inline" query:"base_resp"`
 	MessageList []*base.Message    `thrift:"message_list,2" form:"message_list" json:"message_list" query:"message_list"`
 }
 
@@ -6387,7 +6387,7 @@ func (p *MessageActionRequest) String() string {
 }
 
 type MessageActionResponse struct {
-	BaseResp *base.BaseResponse `thrift:"base_resp,1" form:"base_resp" json:"base_resp" query:"base_resp"`
+	BaseResp *base.BaseResponse `thrift:"base_resp,1" form:"base_resp" json:"inline" query:"base_resp"`
 }
 
 func NewMessageActionResponse() *MessageActionResponse {

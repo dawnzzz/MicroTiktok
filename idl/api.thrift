@@ -11,7 +11,7 @@ struct user_register_request {
 }
 
 struct user_register_reponse {
-    1: base.base_response base_resp(api.json="inline")
+    1: base.base_response base_resp(api.body="inline")
     2: i64 user_id
     3: string token
 }
@@ -25,7 +25,7 @@ struct user_login_request {
 }
 
 struct user_login_response {
-    1: base.base_response base_resp(api.json="inline")
+    1: base.base_response base_resp(api.body="inline")
     2: i64 user_id
     3: string token
 }
@@ -39,7 +39,7 @@ struct user_request {
 }
 
 struct user_response {
-    1: base.base_response base_resp(api.json="inline")
+    1: base.base_response base_resp(api.body="inline")
     2: base.User user
 }
 
@@ -52,7 +52,7 @@ struct feed_request {
 }
 
 struct feed_response {
-    1: base.base_response base_resp(api.json="inline")
+    1: base.base_response base_resp(api.body="inline")
     2: list<base.Video> video_list  // 视频列表
     3: i64 next_time // video_list中的最早时间，作为下一次请求的latest_time
 }
@@ -66,7 +66,7 @@ struct publish_action_request {
 }
 
 struct publish_action_response {
-    1: base.base_response base_resp(api.json="inline")
+    1: base.base_response base_resp(api.body="inline")
 }
 
 /*
@@ -78,7 +78,7 @@ struct publish_list_request {
 }
 
 struct publish_list_response {
-    1: base.base_response base_resp(api.json="inline")
+    1: base.base_response base_resp(api.body="inline")
     2: list<base.Video> video_list
 }
 
@@ -92,7 +92,7 @@ struct favorite_action_request {
 }
 
 struct favorite_action_response {
-    1: base.base_response base_resp(api.json="inline")
+    1: base.base_response base_resp(api.body="inline")
 }
 
 /*
@@ -104,7 +104,7 @@ struct favorite_list_request {
 }
 
 struct favorite_list_response {
-    1: base.base_response base_resp(api.json="inline")
+    1: base.base_response base_resp(api.body="inline")
     2: list<base.Video> video_list
 }
 
@@ -120,7 +120,7 @@ struct comment_action_request {
 }
 
 struct comment_action_response {
-    1: base.base_response base_resp(api.json="inline")
+    1: base.base_response base_resp(api.body="inline")
     2: base.Comment comment
 }
 
@@ -133,7 +133,7 @@ struct comment_list_request {
 }
 
 struct comment_list_response {
-    1: base.base_response base_resp(api.json="inline")
+    1: base.base_response base_resp(api.body="inline")
     2: list<base.Comment> comment_list
 }
 
@@ -147,7 +147,7 @@ struct relation_action_request {
 }
 
 struct relation_action_response {
-    1: base.base_response base_resp(api.json="inline")
+    1: base.base_response base_resp(api.body="inline")
 }
 
 /*
@@ -159,7 +159,7 @@ struct relation_follow_list_request {
 }
 
 struct relation_follow_list_response {
-    1: base.base_response base_resp(api.json="inline")
+    1: base.base_response base_resp(api.body="inline")
     2: list<base.User> user_list
 }
 
@@ -172,7 +172,7 @@ struct relation_follower_list_request {
 }
 
 struct relation_follower_list_response {
-    1: base.base_response base_resp(api.json="inline")
+    1: base.base_response base_resp(api.body="inline")
     2: list<base.User> user_list
 }
 
@@ -185,7 +185,7 @@ struct relation_friend_list_request {
 }
 
 struct relation_friend_list_response {
-    1: base.base_response base_resp(api.json="inline")
+    1: base.base_response base_resp(api.body="inline")
     2: list<base.FriendUser> user_list
 }
 
@@ -199,7 +199,7 @@ struct message_chat_request {
 }
 
 struct message_chat_response {
-    1: base.base_response base_resp(api.json="inline")
+    1: base.base_response base_resp(api.body="inline")
     2: list<base.Message> message_list
 }
 
@@ -214,7 +214,7 @@ struct message_action_request {
 }
 
 struct message_action_response {
-    1: base.base_response base_resp(api.json="inline")
+    1: base.base_response base_resp(api.body="inline")
 }
 
 service UserAPIService {
