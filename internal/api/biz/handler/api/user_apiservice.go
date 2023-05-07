@@ -5,6 +5,7 @@ package api
 import (
 	"context"
 	"github.com/dawnzzz/MicroTiktok/global"
+	"github.com/dawnzzz/MicroTiktok/internal/api/util"
 	"github.com/dawnzzz/MicroTiktok/kitex_gen/user"
 	"github.com/dawnzzz/MicroTiktok/pkg/e"
 
@@ -86,13 +87,44 @@ func Login(ctx context.Context, c *app.RequestContext) {
 func GetUserInfo(ctx context.Context, c *app.RequestContext) {
 	var err error
 	var req api.UserRequest
-	err = c.BindAndValidate(&req)
-	if err != nil {
-		c.String(consts.StatusBadRequest, err.Error())
-		return
-	}
 
 	resp := new(api.UserResponse)
 
+	// 验证参数
+	err = c.BindAndValidate(&req)
+	if err != nil {
+		resp.BaseResp = e.MakeApiBaseResp(e.ErrBadRequest)
+		c.JSON(consts.StatusOK, resp)
+		return
+	}
+
+	// 从上下文中获取view id（token解析出的id）
+	raw, ok := c.Get(global.HzViewerIDKey)
+	if !ok {
+		resp.BaseResp = e.MakeApiBaseResp(e.ErrBadRequest)
+		c.JSON(consts.StatusOK, resp)
+		return
+	}
+	viewerID, ok := raw.(int64)
+	if !ok {
+		resp.BaseResp = e.MakeApiBaseResp(e.ErrBadRequest)
+		c.JSON(consts.StatusOK, resp)
+		return
+	}
+
+	// 发起RPC请求
+	userResponse, err := global.RpcUserClient.GetUserInfo(ctx, &user.GetUserRequest{
+		ViewerId: viewerID,
+		OwnerId:  req.UserID,
+	})
+	if err != nil {
+		resp.BaseResp = e.MakeApiBaseResp(userResponse.BaseResp.StatusCode)
+		c.JSON(consts.StatusOK, resp)
+		return
+	}
+
+	// 获取用户信息成功
+	resp.BaseResp = e.MakeApiBaseResp(e.Success)
+	resp.User = util.RpcUserConvertToApiUser(userResponse.User)
 	c.JSON(consts.StatusOK, resp)
 }

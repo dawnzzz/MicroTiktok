@@ -41,3 +41,7 @@ const (
 var (
 	EtcdEndpoints []string
 )
+
+const (
+	HzViewerIDKey = "viewer_id"
+)
