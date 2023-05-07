@@ -35,7 +35,7 @@ func InitRpcUserClient() {
 
 func InitRpcVideoClient() {
 	var err error
-	global.RpcVideoClient, err = videoservice.NewClient(global.RpcUserServiceName, client.WithResolver(newEtcdResolver()))
+	global.RpcVideoClient, err = videoservice.NewClient(global.RpcVideoServiceName, client.WithResolver(newEtcdResolver()))
 	if err != nil {
 		panic(err)
 	}
@@ -43,7 +43,7 @@ func InitRpcVideoClient() {
 
 func InitRpcFavoriteClient() {
 	var err error
-	global.RpcFavoriteClient, err = favoriteservice.NewClient(global.RpcUserServiceName, client.WithResolver(newEtcdResolver()))
+	global.RpcFavoriteClient, err = favoriteservice.NewClient(global.RpcFavoriteServiceName, client.WithResolver(newEtcdResolver()))
 	if err != nil {
 		panic(err)
 	}
@@ -51,7 +51,7 @@ func InitRpcFavoriteClient() {
 
 func InitRpcCommentClient() {
 	var err error
-	global.RpcCommentClient, err = commentservice.NewClient(global.RpcUserServiceName, client.WithResolver(newEtcdResolver()))
+	global.RpcCommentClient, err = commentservice.NewClient(global.RpcCommentServiceName, client.WithResolver(newEtcdResolver()))
 	if err != nil {
 		panic(err)
 	}
@@ -59,7 +59,7 @@ func InitRpcCommentClient() {
 
 func InitRpcRelationClient() {
 	var err error
-	global.RpcRelationClient, err = relationservice.NewClient(global.RpcUserServiceName, client.WithResolver(newEtcdResolver()))
+	global.RpcRelationClient, err = relationservice.NewClient(global.RpcRelationServiceName, client.WithResolver(newEtcdResolver()))
 	if err != nil {
 		panic(err)
 	}
@@ -75,7 +75,7 @@ func InitRpcMessageClient() {
 
 func InitRpcAuthenticationClient() {
 	var err error
-	global.RpcAuthenticationClient, err = authenticationservice.NewClient(global.RpcUserServiceName, client.WithResolver(newEtcdResolver()))
+	global.RpcAuthenticationClient, err = authenticationservice.NewClient(global.RpcAuthenticationServiceName, client.WithResolver(newEtcdResolver()))
 	if err != nil {
 		panic(err)
 	}
@@ -83,7 +83,7 @@ func InitRpcAuthenticationClient() {
 
 func InitRpcInteractClient() {
 	var err error
-	global.RpcInteractClient, err = interactservice.NewClient(global.RpcUserServiceName, client.WithResolver(newEtcdResolver()))
+	global.RpcInteractClient, err = interactservice.NewClient(global.RpcInteractServiceName, client.WithResolver(newEtcdResolver()))
 	if err != nil {
 		panic(err)
 	}
@@ -91,7 +91,7 @@ func InitRpcInteractClient() {
 
 func InitRpcSocietyClient() {
 	var err error
-	global.RpcSocietyClient, err = societyservice.NewClient(global.RpcUserServiceName, client.WithResolver(newEtcdResolver()))
+	global.RpcSocietyClient, err = societyservice.NewClient(global.RpcSocietyServiceName, client.WithResolver(newEtcdResolver()))
 	if err != nil {
 		panic(err)
 	}
