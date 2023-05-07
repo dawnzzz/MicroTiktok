@@ -52,14 +52,32 @@ func Register(ctx context.Context, c *app.RequestContext) {
 func Login(ctx context.Context, c *app.RequestContext) {
 	var err error
 	var req api.UserLoginRequest
-	err = c.BindAndValidate(&req)
-	if err != nil {
-		c.String(consts.StatusBadRequest, err.Error())
-		return
-	}
 
 	resp := new(api.UserLoginResponse)
 
+	// 验证参数
+	err = c.BindAndValidate(&req)
+	if err != nil {
+		resp.BaseResp = e.MakeApiBaseResp(e.ErrBadRequest)
+		c.JSON(consts.StatusOK, resp)
+		return
+	}
+
+	// 发起RPC请求
+	loginResponse, err := global.RpcUserClient.Login(ctx, &user.UserLoginRequest{
+		Username: req.Username,
+		Password: req.Password,
+	})
+	if err != nil {
+		resp.BaseResp = e.MakeApiBaseResp(loginResponse.BaseResp.StatusCode)
+		c.JSON(consts.StatusOK, resp)
+		return
+	}
+
+	// 登录成功
+	resp.BaseResp = e.MakeApiBaseResp(e.Success)
+	resp.UserID = loginResponse.UserId
+	resp.Token = loginResponse.Token
 	c.JSON(consts.StatusOK, resp)
 }
 
