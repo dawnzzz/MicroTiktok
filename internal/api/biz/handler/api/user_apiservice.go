@@ -4,25 +4,44 @@ package api
 
 import (
 	"context"
+	"github.com/dawnzzz/MicroTiktok/global"
+	"github.com/dawnzzz/MicroTiktok/kitex_gen/user"
+	"github.com/dawnzzz/MicroTiktok/pkg/e"
 
 	"github.com/cloudwego/hertz/pkg/app"
 	"github.com/cloudwego/hertz/pkg/protocol/consts"
 	api "github.com/dawnzzz/MicroTiktok/internal/api/biz/model/api"
 )
 
-// Register .
+// Register 用户注册
 // @router /douyin/user/register [POST]
 func Register(ctx context.Context, c *app.RequestContext) {
 	var err error
 	var req api.UserRegisterRequest
-	err = c.BindAndValidate(&req)
-	if err != nil {
-		c.String(consts.StatusBadRequest, err.Error())
-		return
-	}
 
 	resp := new(api.UserRegisterReponse)
 
+	// 验证参数
+	err = c.BindAndValidate(&req)
+	if err != nil {
+		resp.BaseResp = e.MakeApiBaseResp(e.ErrBadRequest)
+		c.JSON(consts.StatusOK, resp)
+		return
+	}
+
+	// RPC请求
+	registerResponse, err := global.RpcUserClient.Register(ctx, &user.UserRegisterRequest{
+		Username: req.Username,
+		Password: req.Password,
+	})
+	if err != nil {
+		resp.BaseResp = e.MakeApiBaseResp(registerResponse.BaseResp.StatusCode)
+		c.JSON(consts.StatusOK, resp)
+		return
+	}
+
+	// 注册成功
+	resp.BaseResp = e.MakeApiBaseResp(e.Success)
 	c.JSON(consts.StatusOK, resp)
 }
 

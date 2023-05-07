@@ -9,6 +9,9 @@ import (
 func main() {
 	h := server.Default()
 
+	// 初始化RPC client
+	InitRpcClient()
+
 	register(h)
 	h.Spin()
 }
