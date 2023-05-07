@@ -42,6 +42,8 @@ func Register(ctx context.Context, c *app.RequestContext) {
 
 	// 注册成功
 	resp.BaseResp = e.MakeApiBaseResp(e.Success)
+	resp.UserID = registerResponse.UserId
+	resp.Token = registerResponse.Token
 	c.JSON(consts.StatusOK, resp)
 }
 
