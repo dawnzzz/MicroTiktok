@@ -6,8 +6,9 @@ include "base.thrift"
 * 注册
 */
 struct user_register_request {
-    1: string username,
-    2: string password,
+    1: i64 user_id,
+    2: string username,
+    3: string password,
 }
 
 struct user_register_response {
