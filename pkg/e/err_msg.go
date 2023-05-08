@@ -6,9 +6,10 @@ import (
 )
 
 var errMsg = map[int32]string{
-	Success:       "Success",
-	ErrUnknown:    "未知的错误",
-	ErrBadRequest: "请求参数错误",
+	Success:                 "Success",
+	ErrUnknown:              "未知的错误",
+	ErrBadRequest:           "请求参数错误",
+	ErrAuthenticationFailed: "用户身份验证失败，请重新登录",
 
 	ErrUserRpcFailed: "User RPC 请求失败",
 }
