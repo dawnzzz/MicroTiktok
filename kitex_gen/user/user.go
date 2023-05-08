@@ -11,9 +11,8 @@ import (
 )
 
 type UserRegisterRequest struct {
-	UserId   int64  `thrift:"user_id,1" frugal:"1,default,i64" json:"user_id"`
-	Username string `thrift:"username,2" frugal:"2,default,string" json:"username"`
-	Password string `thrift:"password,3" frugal:"3,default,string" json:"password"`
+	Username string `thrift:"username,1" frugal:"1,default,string" json:"username"`
+	Password string `thrift:"password,2" frugal:"2,default,string" json:"password"`
 }
 
 func NewUserRegisterRequest() *UserRegisterRequest {
@@ -24,19 +23,12 @@ func (p *UserRegisterRequest) InitDefault() {
 	*p = UserRegisterRequest{}
 }
 
-func (p *UserRegisterRequest) GetUserId() (v int64) {
-	return p.UserId
-}
-
 func (p *UserRegisterRequest) GetUsername() (v string) {
 	return p.Username
 }
 
 func (p *UserRegisterRequest) GetPassword() (v string) {
 	return p.Password
-}
-func (p *UserRegisterRequest) SetUserId(val int64) {
-	p.UserId = val
 }
 func (p *UserRegisterRequest) SetUsername(val string) {
 	p.Username = val
@@ -46,9 +38,8 @@ func (p *UserRegisterRequest) SetPassword(val string) {
 }
 
 var fieldIDToName_UserRegisterRequest = map[int16]string{
-	1: "user_id",
-	2: "username",
-	3: "password",
+	1: "username",
+	2: "password",
 }
 
 func (p *UserRegisterRequest) Read(iprot thrift.TProtocol) (err error) {
@@ -71,7 +62,7 @@ func (p *UserRegisterRequest) Read(iprot thrift.TProtocol) (err error) {
 
 		switch fieldId {
 		case 1:
-			if fieldTypeId == thrift.I64 {
+			if fieldTypeId == thrift.STRING {
 				if err = p.ReadField1(iprot); err != nil {
 					goto ReadFieldError
 				}
@@ -83,16 +74,6 @@ func (p *UserRegisterRequest) Read(iprot thrift.TProtocol) (err error) {
 		case 2:
 			if fieldTypeId == thrift.STRING {
 				if err = p.ReadField2(iprot); err != nil {
-					goto ReadFieldError
-				}
-			} else {
-				if err = iprot.Skip(fieldTypeId); err != nil {
-					goto SkipFieldError
-				}
-			}
-		case 3:
-			if fieldTypeId == thrift.STRING {
-				if err = p.ReadField3(iprot); err != nil {
 					goto ReadFieldError
 				}
 			} else {
@@ -131,15 +112,6 @@ ReadStructEndError:
 }
 
 func (p *UserRegisterRequest) ReadField1(iprot thrift.TProtocol) error {
-	if v, err := iprot.ReadI64(); err != nil {
-		return err
-	} else {
-		p.UserId = v
-	}
-	return nil
-}
-
-func (p *UserRegisterRequest) ReadField2(iprot thrift.TProtocol) error {
 	if v, err := iprot.ReadString(); err != nil {
 		return err
 	} else {
@@ -148,7 +120,7 @@ func (p *UserRegisterRequest) ReadField2(iprot thrift.TProtocol) error {
 	return nil
 }
 
-func (p *UserRegisterRequest) ReadField3(iprot thrift.TProtocol) error {
+func (p *UserRegisterRequest) ReadField2(iprot thrift.TProtocol) error {
 	if v, err := iprot.ReadString(); err != nil {
 		return err
 	} else {
@@ -171,10 +143,6 @@ func (p *UserRegisterRequest) Write(oprot thrift.TProtocol) (err error) {
 			fieldId = 2
 			goto WriteFieldError
 		}
-		if err = p.writeField3(oprot); err != nil {
-			fieldId = 3
-			goto WriteFieldError
-		}
 
 	}
 	if err = oprot.WriteFieldStop(); err != nil {
@@ -195,10 +163,10 @@ WriteStructEndError:
 }
 
 func (p *UserRegisterRequest) writeField1(oprot thrift.TProtocol) (err error) {
-	if err = oprot.WriteFieldBegin("user_id", thrift.I64, 1); err != nil {
+	if err = oprot.WriteFieldBegin("username", thrift.STRING, 1); err != nil {
 		goto WriteFieldBeginError
 	}
-	if err := oprot.WriteI64(p.UserId); err != nil {
+	if err := oprot.WriteString(p.Username); err != nil {
 		return err
 	}
 	if err = oprot.WriteFieldEnd(); err != nil {
@@ -212,24 +180,7 @@ WriteFieldEndError:
 }
 
 func (p *UserRegisterRequest) writeField2(oprot thrift.TProtocol) (err error) {
-	if err = oprot.WriteFieldBegin("username", thrift.STRING, 2); err != nil {
-		goto WriteFieldBeginError
-	}
-	if err := oprot.WriteString(p.Username); err != nil {
-		return err
-	}
-	if err = oprot.WriteFieldEnd(); err != nil {
-		goto WriteFieldEndError
-	}
-	return nil
-WriteFieldBeginError:
-	return thrift.PrependError(fmt.Sprintf("%T write field 2 begin error: ", p), err)
-WriteFieldEndError:
-	return thrift.PrependError(fmt.Sprintf("%T write field 2 end error: ", p), err)
-}
-
-func (p *UserRegisterRequest) writeField3(oprot thrift.TProtocol) (err error) {
-	if err = oprot.WriteFieldBegin("password", thrift.STRING, 3); err != nil {
+	if err = oprot.WriteFieldBegin("password", thrift.STRING, 2); err != nil {
 		goto WriteFieldBeginError
 	}
 	if err := oprot.WriteString(p.Password); err != nil {
@@ -240,9 +191,9 @@ func (p *UserRegisterRequest) writeField3(oprot thrift.TProtocol) (err error) {
 	}
 	return nil
 WriteFieldBeginError:
-	return thrift.PrependError(fmt.Sprintf("%T write field 3 begin error: ", p), err)
+	return thrift.PrependError(fmt.Sprintf("%T write field 2 begin error: ", p), err)
 WriteFieldEndError:
-	return thrift.PrependError(fmt.Sprintf("%T write field 3 end error: ", p), err)
+	return thrift.PrependError(fmt.Sprintf("%T write field 2 end error: ", p), err)
 }
 
 func (p *UserRegisterRequest) String() string {
@@ -258,33 +209,23 @@ func (p *UserRegisterRequest) DeepEqual(ano *UserRegisterRequest) bool {
 	} else if p == nil || ano == nil {
 		return false
 	}
-	if !p.Field1DeepEqual(ano.UserId) {
+	if !p.Field1DeepEqual(ano.Username) {
 		return false
 	}
-	if !p.Field2DeepEqual(ano.Username) {
-		return false
-	}
-	if !p.Field3DeepEqual(ano.Password) {
+	if !p.Field2DeepEqual(ano.Password) {
 		return false
 	}
 	return true
 }
 
-func (p *UserRegisterRequest) Field1DeepEqual(src int64) bool {
-
-	if p.UserId != src {
-		return false
-	}
-	return true
-}
-func (p *UserRegisterRequest) Field2DeepEqual(src string) bool {
+func (p *UserRegisterRequest) Field1DeepEqual(src string) bool {
 
 	if strings.Compare(p.Username, src) != 0 {
 		return false
 	}
 	return true
 }
-func (p *UserRegisterRequest) Field3DeepEqual(src string) bool {
+func (p *UserRegisterRequest) Field2DeepEqual(src string) bool {
 
 	if strings.Compare(p.Password, src) != 0 {
 		return false
