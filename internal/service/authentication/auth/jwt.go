@@ -9,14 +9,14 @@ import (
 )
 
 type UserClaims struct {
-	userID int64
+	UserID int64
 	jwt.StandardClaims
 }
 
 // GetToken 获取token
 func GetToken(userID int64) (string, error) {
 	cla := UserClaims{
-		userID: userID,
+		UserID: userID,
 		StandardClaims: jwt.StandardClaims{
 			ExpiresAt: time.Now().Add(config.AuthenticationConfigObj.TokenExpireDuration).Unix(), // 过期时间
 		},
