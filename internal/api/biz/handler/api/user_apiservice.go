@@ -146,9 +146,18 @@ func GetUserInfo(ctx context.Context, c *app.RequestContext) {
 		OwnerId:  req.UserID,
 	})
 	if err != nil {
-		resp.StatusCode = e.ErrBadRequest
-		resp.StatusMsg = e.GetErrMsg(resp.StatusCode)
-		c.JSON(consts.StatusOK, resp)
+		bizErr, isBizErr := kerrors.FromBizStatusError(err)
+		if isBizErr {
+			// 是业务类型的错误
+			resp.StatusCode = bizErr.BizStatusCode()
+			resp.StatusMsg = bizErr.BizMessage()
+			c.JSON(consts.StatusOK, resp)
+		} else {
+			// 是RPC错误
+			resp.StatusCode = e.ErrUserRpcFailed
+			resp.StatusMsg = e.GetErrMsg(resp.StatusCode)
+			c.JSON(consts.StatusInternalServerError, resp)
+		}
 		return
 	}
 
