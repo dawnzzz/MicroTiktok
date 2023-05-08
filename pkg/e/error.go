@@ -6,6 +6,8 @@ const (
 	ErrBadRequest
 	ErrAuthenticationFailed
 	ErrGenerateTokenFailed
-
+	ErrDBError
 	ErrUserRpcFailed
+	ErrAuthenticationRpcFailed
+	ErrDuplicatedUserName
 )
