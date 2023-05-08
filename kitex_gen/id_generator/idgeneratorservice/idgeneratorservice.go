@@ -111,7 +111,7 @@ func (p *kClient) GetUserID(ctx context.Context, req *id_generator.GetUserIdRequ
 	return _result.GetSuccess(), nil
 }
 
-func (p *kClient) GetVideoID(ctx context.Context, req *id_generator.GetVideoIdRequest) (r *id_generator.GetVideoIdRequest, err error) {
+func (p *kClient) GetVideoID(ctx context.Context, req *id_generator.GetVideoIdRequest) (r *id_generator.GetVideoIdResponse, err error) {
 	var _args id_generator.IdGeneratorServiceGetVideoIDArgs
 	_args.Req = req
 	var _result id_generator.IdGeneratorServiceGetVideoIDResult
@@ -121,7 +121,7 @@ func (p *kClient) GetVideoID(ctx context.Context, req *id_generator.GetVideoIdRe
 	return _result.GetSuccess(), nil
 }
 
-func (p *kClient) GetCommentID(ctx context.Context, req *id_generator.GetCommentIdRequest) (r *id_generator.GetCommentIdRequest, err error) {
+func (p *kClient) GetCommentID(ctx context.Context, req *id_generator.GetCommentIdRequest) (r *id_generator.GetCommentIdResponse, err error) {
 	var _args id_generator.IdGeneratorServiceGetCommentIDArgs
 	_args.Req = req
 	var _result id_generator.IdGeneratorServiceGetCommentIDResult

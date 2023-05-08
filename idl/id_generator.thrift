@@ -37,6 +37,6 @@ struct get_comment_id_response {
 
 service IdGeneratorService {
     get_user_id_response GetUserID(1: get_user_id_request req),
-    get_video_id_request GetVideoID(1: get_video_id_request req),
-    get_comment_id_request GetCommentID(1: get_comment_id_request req),
+    get_video_id_response GetVideoID(1: get_video_id_request req),
+    get_comment_id_response GetCommentID(1: get_comment_id_request req),
 }

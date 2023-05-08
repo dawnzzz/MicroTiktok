@@ -12,8 +12,8 @@ import (
 // Client is designed to provide IDL-compatible methods with call-option parameter for kitex framework.
 type Client interface {
 	GetUserID(ctx context.Context, req *id_generator.GetUserIdRequest, callOptions ...callopt.Option) (r *id_generator.GetUserIdResponse, err error)
-	GetVideoID(ctx context.Context, req *id_generator.GetVideoIdRequest, callOptions ...callopt.Option) (r *id_generator.GetVideoIdRequest, err error)
-	GetCommentID(ctx context.Context, req *id_generator.GetCommentIdRequest, callOptions ...callopt.Option) (r *id_generator.GetCommentIdRequest, err error)
+	GetVideoID(ctx context.Context, req *id_generator.GetVideoIdRequest, callOptions ...callopt.Option) (r *id_generator.GetVideoIdResponse, err error)
+	GetCommentID(ctx context.Context, req *id_generator.GetCommentIdRequest, callOptions ...callopt.Option) (r *id_generator.GetCommentIdResponse, err error)
 }
 
 // NewClient creates a client for the service defined in IDL.
@@ -50,12 +50,12 @@ func (p *kIdGeneratorServiceClient) GetUserID(ctx context.Context, req *id_gener
 	return p.kClient.GetUserID(ctx, req)
 }
 
-func (p *kIdGeneratorServiceClient) GetVideoID(ctx context.Context, req *id_generator.GetVideoIdRequest, callOptions ...callopt.Option) (r *id_generator.GetVideoIdRequest, err error) {
+func (p *kIdGeneratorServiceClient) GetVideoID(ctx context.Context, req *id_generator.GetVideoIdRequest, callOptions ...callopt.Option) (r *id_generator.GetVideoIdResponse, err error) {
 	ctx = client.NewCtxWithCallOptions(ctx, callOptions)
 	return p.kClient.GetVideoID(ctx, req)
 }
 
-func (p *kIdGeneratorServiceClient) GetCommentID(ctx context.Context, req *id_generator.GetCommentIdRequest, callOptions ...callopt.Option) (r *id_generator.GetCommentIdRequest, err error) {
+func (p *kIdGeneratorServiceClient) GetCommentID(ctx context.Context, req *id_generator.GetCommentIdRequest, callOptions ...callopt.Option) (r *id_generator.GetCommentIdResponse, err error) {
 	ctx = client.NewCtxWithCallOptions(ctx, callOptions)
 	return p.kClient.GetCommentID(ctx, req)
 }

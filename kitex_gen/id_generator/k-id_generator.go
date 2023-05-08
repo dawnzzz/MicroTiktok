@@ -1246,7 +1246,7 @@ ReadStructEndError:
 func (p *IdGeneratorServiceGetVideoIDResult) FastReadField0(buf []byte) (int, error) {
 	offset := 0
 
-	tmp := NewGetVideoIdRequest()
+	tmp := NewGetVideoIdResponse()
 	if l, err := tmp.FastRead(buf[offset:]); err != nil {
 		return offset, err
 	} else {
@@ -1504,7 +1504,7 @@ ReadStructEndError:
 func (p *IdGeneratorServiceGetCommentIDResult) FastReadField0(buf []byte) (int, error) {
 	offset := 0
 
-	tmp := NewGetCommentIdRequest()
+	tmp := NewGetCommentIdResponse()
 	if l, err := tmp.FastRead(buf[offset:]); err != nil {
 		return offset, err
 	} else {

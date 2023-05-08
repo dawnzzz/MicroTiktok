@@ -987,9 +987,9 @@ func (p *GetCommentIdResponse) Field2DeepEqual(src int64) bool {
 type IdGeneratorService interface {
 	GetUserID(ctx context.Context, req *GetUserIdRequest) (r *GetUserIdResponse, err error)
 
-	GetVideoID(ctx context.Context, req *GetVideoIdRequest) (r *GetVideoIdRequest, err error)
+	GetVideoID(ctx context.Context, req *GetVideoIdRequest) (r *GetVideoIdResponse, err error)
 
-	GetCommentID(ctx context.Context, req *GetCommentIdRequest) (r *GetCommentIdRequest, err error)
+	GetCommentID(ctx context.Context, req *GetCommentIdRequest) (r *GetCommentIdResponse, err error)
 }
 
 type IdGeneratorServiceClient struct {
@@ -1027,7 +1027,7 @@ func (p *IdGeneratorServiceClient) GetUserID(ctx context.Context, req *GetUserId
 	}
 	return _result.GetSuccess(), nil
 }
-func (p *IdGeneratorServiceClient) GetVideoID(ctx context.Context, req *GetVideoIdRequest) (r *GetVideoIdRequest, err error) {
+func (p *IdGeneratorServiceClient) GetVideoID(ctx context.Context, req *GetVideoIdRequest) (r *GetVideoIdResponse, err error) {
 	var _args IdGeneratorServiceGetVideoIDArgs
 	_args.Req = req
 	var _result IdGeneratorServiceGetVideoIDResult
@@ -1036,7 +1036,7 @@ func (p *IdGeneratorServiceClient) GetVideoID(ctx context.Context, req *GetVideo
 	}
 	return _result.GetSuccess(), nil
 }
-func (p *IdGeneratorServiceClient) GetCommentID(ctx context.Context, req *GetCommentIdRequest) (r *GetCommentIdRequest, err error) {
+func (p *IdGeneratorServiceClient) GetCommentID(ctx context.Context, req *GetCommentIdRequest) (r *GetCommentIdResponse, err error) {
 	var _args IdGeneratorServiceGetCommentIDArgs
 	_args.Req = req
 	var _result IdGeneratorServiceGetCommentIDResult
@@ -1156,7 +1156,7 @@ func (p *idGeneratorServiceProcessorGetVideoID) Process(ctx context.Context, seq
 	iprot.ReadMessageEnd()
 	var err2 error
 	result := IdGeneratorServiceGetVideoIDResult{}
-	var retval *GetVideoIdRequest
+	var retval *GetVideoIdResponse
 	if retval, err2 = p.handler.GetVideoID(ctx, args.Req); err2 != nil {
 		x := thrift.NewTApplicationException(thrift.INTERNAL_ERROR, "Internal error processing GetVideoID: "+err2.Error())
 		oprot.WriteMessageBegin("GetVideoID", thrift.EXCEPTION, seqId)
@@ -1204,7 +1204,7 @@ func (p *idGeneratorServiceProcessorGetCommentID) Process(ctx context.Context, s
 	iprot.ReadMessageEnd()
 	var err2 error
 	result := IdGeneratorServiceGetCommentIDResult{}
-	var retval *GetCommentIdRequest
+	var retval *GetCommentIdResponse
 	if retval, err2 = p.handler.GetCommentID(ctx, args.Req); err2 != nil {
 		x := thrift.NewTApplicationException(thrift.INTERNAL_ERROR, "Internal error processing GetCommentID: "+err2.Error())
 		oprot.WriteMessageBegin("GetCommentID", thrift.EXCEPTION, seqId)
@@ -1752,7 +1752,7 @@ func (p *IdGeneratorServiceGetVideoIDArgs) Field1DeepEqual(src *GetVideoIdReques
 }
 
 type IdGeneratorServiceGetVideoIDResult struct {
-	Success *GetVideoIdRequest `thrift:"success,0,optional" frugal:"0,optional,GetVideoIdRequest" json:"success,omitempty"`
+	Success *GetVideoIdResponse `thrift:"success,0,optional" frugal:"0,optional,GetVideoIdResponse" json:"success,omitempty"`
 }
 
 func NewIdGeneratorServiceGetVideoIDResult() *IdGeneratorServiceGetVideoIDResult {
@@ -1763,16 +1763,16 @@ func (p *IdGeneratorServiceGetVideoIDResult) InitDefault() {
 	*p = IdGeneratorServiceGetVideoIDResult{}
 }
 
-var IdGeneratorServiceGetVideoIDResult_Success_DEFAULT *GetVideoIdRequest
+var IdGeneratorServiceGetVideoIDResult_Success_DEFAULT *GetVideoIdResponse
 
-func (p *IdGeneratorServiceGetVideoIDResult) GetSuccess() (v *GetVideoIdRequest) {
+func (p *IdGeneratorServiceGetVideoIDResult) GetSuccess() (v *GetVideoIdResponse) {
 	if !p.IsSetSuccess() {
 		return IdGeneratorServiceGetVideoIDResult_Success_DEFAULT
 	}
 	return p.Success
 }
 func (p *IdGeneratorServiceGetVideoIDResult) SetSuccess(x interface{}) {
-	p.Success = x.(*GetVideoIdRequest)
+	p.Success = x.(*GetVideoIdResponse)
 }
 
 var fieldIDToName_IdGeneratorServiceGetVideoIDResult = map[int16]string{
@@ -1843,7 +1843,7 @@ ReadStructEndError:
 }
 
 func (p *IdGeneratorServiceGetVideoIDResult) ReadField0(iprot thrift.TProtocol) error {
-	p.Success = NewGetVideoIdRequest()
+	p.Success = NewGetVideoIdResponse()
 	if err := p.Success.Read(iprot); err != nil {
 		return err
 	}
@@ -1917,7 +1917,7 @@ func (p *IdGeneratorServiceGetVideoIDResult) DeepEqual(ano *IdGeneratorServiceGe
 	return true
 }
 
-func (p *IdGeneratorServiceGetVideoIDResult) Field0DeepEqual(src *GetVideoIdRequest) bool {
+func (p *IdGeneratorServiceGetVideoIDResult) Field0DeepEqual(src *GetVideoIdResponse) bool {
 
 	if !p.Success.DeepEqual(src) {
 		return false
@@ -2098,7 +2098,7 @@ func (p *IdGeneratorServiceGetCommentIDArgs) Field1DeepEqual(src *GetCommentIdRe
 }
 
 type IdGeneratorServiceGetCommentIDResult struct {
-	Success *GetCommentIdRequest `thrift:"success,0,optional" frugal:"0,optional,GetCommentIdRequest" json:"success,omitempty"`
+	Success *GetCommentIdResponse `thrift:"success,0,optional" frugal:"0,optional,GetCommentIdResponse" json:"success,omitempty"`
 }
 
 func NewIdGeneratorServiceGetCommentIDResult() *IdGeneratorServiceGetCommentIDResult {
@@ -2109,16 +2109,16 @@ func (p *IdGeneratorServiceGetCommentIDResult) InitDefault() {
 	*p = IdGeneratorServiceGetCommentIDResult{}
 }
 
-var IdGeneratorServiceGetCommentIDResult_Success_DEFAULT *GetCommentIdRequest
+var IdGeneratorServiceGetCommentIDResult_Success_DEFAULT *GetCommentIdResponse
 
-func (p *IdGeneratorServiceGetCommentIDResult) GetSuccess() (v *GetCommentIdRequest) {
+func (p *IdGeneratorServiceGetCommentIDResult) GetSuccess() (v *GetCommentIdResponse) {
 	if !p.IsSetSuccess() {
 		return IdGeneratorServiceGetCommentIDResult_Success_DEFAULT
 	}
 	return p.Success
 }
 func (p *IdGeneratorServiceGetCommentIDResult) SetSuccess(x interface{}) {
-	p.Success = x.(*GetCommentIdRequest)
+	p.Success = x.(*GetCommentIdResponse)
 }
 
 var fieldIDToName_IdGeneratorServiceGetCommentIDResult = map[int16]string{
@@ -2189,7 +2189,7 @@ ReadStructEndError:
 }
 
 func (p *IdGeneratorServiceGetCommentIDResult) ReadField0(iprot thrift.TProtocol) error {
-	p.Success = NewGetCommentIdRequest()
+	p.Success = NewGetCommentIdResponse()
 	if err := p.Success.Read(iprot); err != nil {
 		return err
 	}
@@ -2263,7 +2263,7 @@ func (p *IdGeneratorServiceGetCommentIDResult) DeepEqual(ano *IdGeneratorService
 	return true
 }
 
-func (p *IdGeneratorServiceGetCommentIDResult) Field0DeepEqual(src *GetCommentIdRequest) bool {
+func (p *IdGeneratorServiceGetCommentIDResult) Field0DeepEqual(src *GetCommentIdResponse) bool {
 
 	if !p.Success.DeepEqual(src) {
 		return false
