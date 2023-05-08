@@ -3,11 +3,10 @@ namespace go authentication
 include "base.thrift"
 
 /*
-* 验证用户名和密码是否正确，生成token
+* 生成token
 */
 struct generate_token_request {
-    1: string username,
-    2: string password,
+    1: i64 user_id,
 }
 
 struct generate_token_response {

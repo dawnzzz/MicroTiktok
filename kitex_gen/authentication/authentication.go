@@ -11,8 +11,7 @@ import (
 )
 
 type GenerateTokenRequest struct {
-	Username string `thrift:"username,1" frugal:"1,default,string" json:"username"`
-	Password string `thrift:"password,2" frugal:"2,default,string" json:"password"`
+	UserId int64 `thrift:"user_id,1" frugal:"1,default,i64" json:"user_id"`
 }
 
 func NewGenerateTokenRequest() *GenerateTokenRequest {
@@ -23,23 +22,15 @@ func (p *GenerateTokenRequest) InitDefault() {
 	*p = GenerateTokenRequest{}
 }
 
-func (p *GenerateTokenRequest) GetUsername() (v string) {
-	return p.Username
+func (p *GenerateTokenRequest) GetUserId() (v int64) {
+	return p.UserId
 }
-
-func (p *GenerateTokenRequest) GetPassword() (v string) {
-	return p.Password
-}
-func (p *GenerateTokenRequest) SetUsername(val string) {
-	p.Username = val
-}
-func (p *GenerateTokenRequest) SetPassword(val string) {
-	p.Password = val
+func (p *GenerateTokenRequest) SetUserId(val int64) {
+	p.UserId = val
 }
 
 var fieldIDToName_GenerateTokenRequest = map[int16]string{
-	1: "username",
-	2: "password",
+	1: "user_id",
 }
 
 func (p *GenerateTokenRequest) Read(iprot thrift.TProtocol) (err error) {
@@ -62,18 +53,8 @@ func (p *GenerateTokenRequest) Read(iprot thrift.TProtocol) (err error) {
 
 		switch fieldId {
 		case 1:
-			if fieldTypeId == thrift.STRING {
+			if fieldTypeId == thrift.I64 {
 				if err = p.ReadField1(iprot); err != nil {
-					goto ReadFieldError
-				}
-			} else {
-				if err = iprot.Skip(fieldTypeId); err != nil {
-					goto SkipFieldError
-				}
-			}
-		case 2:
-			if fieldTypeId == thrift.STRING {
-				if err = p.ReadField2(iprot); err != nil {
 					goto ReadFieldError
 				}
 			} else {
@@ -112,19 +93,10 @@ ReadStructEndError:
 }
 
 func (p *GenerateTokenRequest) ReadField1(iprot thrift.TProtocol) error {
-	if v, err := iprot.ReadString(); err != nil {
+	if v, err := iprot.ReadI64(); err != nil {
 		return err
 	} else {
-		p.Username = v
-	}
-	return nil
-}
-
-func (p *GenerateTokenRequest) ReadField2(iprot thrift.TProtocol) error {
-	if v, err := iprot.ReadString(); err != nil {
-		return err
-	} else {
-		p.Password = v
+		p.UserId = v
 	}
 	return nil
 }
@@ -137,10 +109,6 @@ func (p *GenerateTokenRequest) Write(oprot thrift.TProtocol) (err error) {
 	if p != nil {
 		if err = p.writeField1(oprot); err != nil {
 			fieldId = 1
-			goto WriteFieldError
-		}
-		if err = p.writeField2(oprot); err != nil {
-			fieldId = 2
 			goto WriteFieldError
 		}
 
@@ -163,10 +131,10 @@ WriteStructEndError:
 }
 
 func (p *GenerateTokenRequest) writeField1(oprot thrift.TProtocol) (err error) {
-	if err = oprot.WriteFieldBegin("username", thrift.STRING, 1); err != nil {
+	if err = oprot.WriteFieldBegin("user_id", thrift.I64, 1); err != nil {
 		goto WriteFieldBeginError
 	}
-	if err := oprot.WriteString(p.Username); err != nil {
+	if err := oprot.WriteI64(p.UserId); err != nil {
 		return err
 	}
 	if err = oprot.WriteFieldEnd(); err != nil {
@@ -177,23 +145,6 @@ WriteFieldBeginError:
 	return thrift.PrependError(fmt.Sprintf("%T write field 1 begin error: ", p), err)
 WriteFieldEndError:
 	return thrift.PrependError(fmt.Sprintf("%T write field 1 end error: ", p), err)
-}
-
-func (p *GenerateTokenRequest) writeField2(oprot thrift.TProtocol) (err error) {
-	if err = oprot.WriteFieldBegin("password", thrift.STRING, 2); err != nil {
-		goto WriteFieldBeginError
-	}
-	if err := oprot.WriteString(p.Password); err != nil {
-		return err
-	}
-	if err = oprot.WriteFieldEnd(); err != nil {
-		goto WriteFieldEndError
-	}
-	return nil
-WriteFieldBeginError:
-	return thrift.PrependError(fmt.Sprintf("%T write field 2 begin error: ", p), err)
-WriteFieldEndError:
-	return thrift.PrependError(fmt.Sprintf("%T write field 2 end error: ", p), err)
 }
 
 func (p *GenerateTokenRequest) String() string {
@@ -209,25 +160,15 @@ func (p *GenerateTokenRequest) DeepEqual(ano *GenerateTokenRequest) bool {
 	} else if p == nil || ano == nil {
 		return false
 	}
-	if !p.Field1DeepEqual(ano.Username) {
-		return false
-	}
-	if !p.Field2DeepEqual(ano.Password) {
+	if !p.Field1DeepEqual(ano.UserId) {
 		return false
 	}
 	return true
 }
 
-func (p *GenerateTokenRequest) Field1DeepEqual(src string) bool {
+func (p *GenerateTokenRequest) Field1DeepEqual(src int64) bool {
 
-	if strings.Compare(p.Username, src) != 0 {
-		return false
-	}
-	return true
-}
-func (p *GenerateTokenRequest) Field2DeepEqual(src string) bool {
-
-	if strings.Compare(p.Password, src) != 0 {
+	if p.UserId != src {
 		return false
 	}
 	return true
