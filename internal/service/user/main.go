@@ -10,6 +10,10 @@ func main() {
 
 	err := svr.Run()
 
+	InitDB()
+
+	InitRpcClient()
+
 	if err != nil {
 		log.Println(err.Error())
 	}
