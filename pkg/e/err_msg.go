@@ -9,6 +9,8 @@ var errMsg = map[int32]string{
 	Success:       "Success",
 	ErrUnknown:    "未知的错误",
 	ErrBadRequest: "请求参数错误",
+
+	ErrUserRpcFailed: "User RPC 请求失败",
 }
 
 func GetErrMsg(errno int32) string {
