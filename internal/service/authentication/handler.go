@@ -14,8 +14,20 @@ type AuthenticationServiceImpl struct{}
 
 // GenerateToken implements the AuthenticationServiceImpl interface.
 func (s *AuthenticationServiceImpl) GenerateToken(ctx context.Context, req *authentication.GenerateTokenRequest) (resp *authentication.GenerateTokenResponse, err error) {
-	// TODO: Your code here...
-	return
+	// 生成token
+	token, err := auth.GetToken(req.UserId)
+	if err != nil { // 生成失败
+		return nil, kerrors.NewBizStatusError(e.ErrGenerateTokenFailed, e.GetErrMsg(e.ErrGenerateTokenFailed))
+	}
+
+	// 成功，返回token
+	return &authentication.GenerateTokenResponse{
+		BaseResp: &base.BaseResponse{
+			StatusCode: e.Success,
+			StatusMsg:  e.GetErrMsg(e.Success),
+		},
+		Token: token,
+	}, nil
 }
 
 // CheckToken implements the AuthenticationServiceImpl interface.

@@ -5,6 +5,7 @@ const (
 	ErrUnknown
 	ErrBadRequest
 	ErrAuthenticationFailed
+	ErrGenerateTokenFailed
 
 	ErrUserRpcFailed
 )
