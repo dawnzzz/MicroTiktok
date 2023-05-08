@@ -3,6 +3,8 @@ package global
 import "time"
 
 func init() {
+	EtcdEndpoints = []string{"127.0.0.1:2379"}
+
 	ConfigObj = &Config{
 		MysqlConfig: MysqlConfig{
 			Host:            "127.0.0.1",
