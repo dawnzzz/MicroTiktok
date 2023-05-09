@@ -33,12 +33,12 @@ func Register(ctx context.Context, c *app.RequestContext) {
 	}
 
 	// RPC请求
-	registerResponse, err := global.RpcUserClient.Register(ctx, &user.UserRegisterRequest{
+	registerResponse, registerErr := global.RpcUserClient.Register(ctx, &user.UserRegisterRequest{
 		Username: req.Username,
 		Password: req.Password,
 	})
-	if err != nil {
-		bizErr, isBizErr := kerrors.FromBizStatusError(err)
+	if registerErr != nil {
+		bizErr, isBizErr := kerrors.FromBizStatusError(registerErr)
 		if isBizErr {
 			// 是业务类型的错误
 			resp.StatusCode = bizErr.BizStatusCode()
