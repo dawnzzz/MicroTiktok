@@ -31,4 +31,6 @@ func InitDB() {
 	sqlDB.SetMaxIdleConns(global.ConfigObj.MysqlConfig.MaxIdleConns)
 	sqlDB.SetMaxOpenConns(global.ConfigObj.MysqlConfig.MaxOpenConns)
 	sqlDB.SetConnMaxLifetime(global.ConfigObj.MysqlConfig.ConnMaxLifetime)
+
+	_ = db.AutoMigrate(&User{})
 }
