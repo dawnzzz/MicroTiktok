@@ -10,4 +10,8 @@ const (
 	ErrUserRpcFailed
 	ErrAuthenticationRpcFailed
 	ErrDuplicatedUserName
+
+	ErrUserIDGeneratorInitFailed
+	ErrVideoIDGeneratorInitFailed
+	ErrCommentIDGeneratorInitFailed
 )

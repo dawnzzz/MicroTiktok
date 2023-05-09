@@ -15,6 +15,10 @@ var errMsg = map[int32]string{
 	ErrUserRpcFailed:           "User RPC 请求失败",
 	ErrAuthenticationRpcFailed: "Authentication RPC请求失败",
 	ErrDuplicatedUserName:      "用户名重复",
+
+	ErrUserIDGeneratorInitFailed:    "user id 生成器初始化失败",
+	ErrVideoIDGeneratorInitFailed:   "video id 生成器初始化失败",
+	ErrCommentIDGeneratorInitFailed: "comment id 生成器初始化失败",
 }
 
 func GetErrMsg(errno int32) string {
