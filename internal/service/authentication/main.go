@@ -24,12 +24,12 @@ func main() {
 	//rpc info
 	info := &rpcinfo.EndpointBasicInfo{
 		ServiceName: global.RpcAuthenticationServiceName,
-		Tags:        map[string]string{},
 	}
 
 	svr := authentication.NewServer(new(AuthenticationServiceImpl),
 		server.WithServerBasicInfo(info), server.WithRegistry(r),
 		server.WithServiceAddr(utils.NewNetAddr("tcp", fmt.Sprintf(":%v", config.AuthenticationConfigObj.Port))),
+		server.WithMuxTransport(),
 	)
 
 	err = svr.Run()

@@ -28,12 +28,12 @@ func main() {
 	//rpc info
 	info := &rpcinfo.EndpointBasicInfo{
 		ServiceName: global.RpcUserServiceName,
-		Tags:        map[string]string{},
 	}
 
 	svr := user.NewServer(new(UserServiceImpl),
 		server.WithServerBasicInfo(info), server.WithRegistry(r),
 		server.WithServiceAddr(utils.NewNetAddr("tcp", fmt.Sprintf(":%v", config.UserConfigObj.Port))),
+		server.WithMuxTransport(),
 	)
 
 	err = svr.Run()

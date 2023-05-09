@@ -25,12 +25,12 @@ func main() {
 	//rpc info
 	info := &rpcinfo.EndpointBasicInfo{
 		ServiceName: global.RpcIdGeneratorServiceName,
-		Tags:        map[string]string{},
 	}
 
 	svr := id_generator.NewServer(
 		new(IdGeneratorServiceImpl), server.WithServerBasicInfo(info), server.WithRegistry(r),
 		server.WithServiceAddr(utils.NewNetAddr("tcp", fmt.Sprintf(":%v", config.IdGeneratorConfigObj.Port))),
+		server.WithMuxTransport(),
 	)
 
 	err = svr.Run()

@@ -17,6 +17,16 @@ import (
 	etcd "github.com/kitex-contrib/registry-etcd"
 )
 
+func rpcClientOptions() []client.Option {
+	var options []client.Option
+	// 添加服务发现
+	options = append(options, client.WithResolver(newEtcdResolver()))
+	// 添加多路复用
+	options = append(options, client.WithMuxConnection(1))
+
+	return options
+}
+
 func newEtcdResolver() discovery.Resolver {
 	etcdResolver, err := etcd.NewEtcdResolver(global.EtcdEndpoints)
 	if err != nil {
@@ -28,7 +38,7 @@ func newEtcdResolver() discovery.Resolver {
 
 func InitRpcUserClient() {
 	var err error
-	global.RpcUserClient, err = userservice.NewClient(global.RpcUserServiceName, client.WithResolver(newEtcdResolver()))
+	global.RpcUserClient, err = userservice.NewClient(global.RpcUserServiceName, rpcClientOptions()...)
 	if err != nil {
 		panic(err)
 	}
@@ -36,7 +46,7 @@ func InitRpcUserClient() {
 
 func InitRpcVideoClient() {
 	var err error
-	global.RpcVideoClient, err = videoservice.NewClient(global.RpcVideoServiceName, client.WithResolver(newEtcdResolver()))
+	global.RpcVideoClient, err = videoservice.NewClient(global.RpcVideoServiceName, rpcClientOptions()...)
 	if err != nil {
 		panic(err)
 	}
@@ -44,7 +54,7 @@ func InitRpcVideoClient() {
 
 func InitRpcFavoriteClient() {
 	var err error
-	global.RpcFavoriteClient, err = favoriteservice.NewClient(global.RpcFavoriteServiceName, client.WithResolver(newEtcdResolver()))
+	global.RpcFavoriteClient, err = favoriteservice.NewClient(global.RpcFavoriteServiceName, rpcClientOptions()...)
 	if err != nil {
 		panic(err)
 	}
@@ -52,7 +62,7 @@ func InitRpcFavoriteClient() {
 
 func InitRpcCommentClient() {
 	var err error
-	global.RpcCommentClient, err = commentservice.NewClient(global.RpcCommentServiceName, client.WithResolver(newEtcdResolver()))
+	global.RpcCommentClient, err = commentservice.NewClient(global.RpcCommentServiceName, rpcClientOptions()...)
 	if err != nil {
 		panic(err)
 	}
@@ -60,7 +70,7 @@ func InitRpcCommentClient() {
 
 func InitRpcRelationClient() {
 	var err error
-	global.RpcRelationClient, err = relationservice.NewClient(global.RpcRelationServiceName, client.WithResolver(newEtcdResolver()))
+	global.RpcRelationClient, err = relationservice.NewClient(global.RpcRelationServiceName, rpcClientOptions()...)
 	if err != nil {
 		panic(err)
 	}
@@ -68,7 +78,7 @@ func InitRpcRelationClient() {
 
 func InitRpcMessageClient() {
 	var err error
-	global.RpcMessageClient, err = messageservice.NewClient(global.RpcMessageServiceName, client.WithResolver(newEtcdResolver()))
+	global.RpcMessageClient, err = messageservice.NewClient(global.RpcMessageServiceName, rpcClientOptions()...)
 	if err != nil {
 		panic(err)
 	}
@@ -76,7 +86,7 @@ func InitRpcMessageClient() {
 
 func InitRpcAuthenticationClient() {
 	var err error
-	global.RpcAuthenticationClient, err = authenticationservice.NewClient(global.RpcAuthenticationServiceName, client.WithResolver(newEtcdResolver()))
+	global.RpcAuthenticationClient, err = authenticationservice.NewClient(global.RpcAuthenticationServiceName, rpcClientOptions()...)
 	if err != nil {
 		panic(err)
 	}
@@ -84,7 +94,7 @@ func InitRpcAuthenticationClient() {
 
 func InitRpcInteractClient() {
 	var err error
-	global.RpcInteractClient, err = interactservice.NewClient(global.RpcInteractServiceName, client.WithResolver(newEtcdResolver()))
+	global.RpcInteractClient, err = interactservice.NewClient(global.RpcInteractServiceName, rpcClientOptions()...)
 	if err != nil {
 		panic(err)
 	}
@@ -92,7 +102,7 @@ func InitRpcInteractClient() {
 
 func InitRpcSocietyClient() {
 	var err error
-	global.RpcSocietyClient, err = societyservice.NewClient(global.RpcSocietyServiceName, client.WithResolver(newEtcdResolver()))
+	global.RpcSocietyClient, err = societyservice.NewClient(global.RpcSocietyServiceName, rpcClientOptions()...)
 	if err != nil {
 		panic(err)
 	}
@@ -100,7 +110,7 @@ func InitRpcSocietyClient() {
 
 func InitRpcIdGeneratorClient() {
 	var err error
-	global.RpcIdGeneratorClient, err = idgeneratorservice.NewClient(global.RpcIdGeneratorServiceName, client.WithResolver(newEtcdResolver()))
+	global.RpcIdGeneratorClient, err = idgeneratorservice.NewClient(global.RpcIdGeneratorServiceName, rpcClientOptions()...)
 	if err != nil {
 		panic(err)
 	}
