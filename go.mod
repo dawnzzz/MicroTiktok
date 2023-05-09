@@ -8,7 +8,6 @@ require (
 	github.com/apache/thrift v0.13.0
 	github.com/bwmarrin/snowflake v0.3.0
 	github.com/cloudwego/kitex v0.5.2
-	github.com/coreos/etcd v3.3.13+incompatible
 )
 
 require (

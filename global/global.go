@@ -36,6 +36,7 @@ const (
 	RpcAuthenticationServiceName = "authentication"
 	RpcInteractServiceName       = "interact"
 	RpcSocietyServiceName        = "society"
+	RpcIdGeneratorServiceName    = "id_generator"
 )
 
 var (
