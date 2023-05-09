@@ -6,6 +6,9 @@ import (
 )
 
 func main() {
+	// 初始化id generator config
+	InitIdGeneratorConfig()
+
 	svr := id_generator.NewServer(new(IdGeneratorServiceImpl))
 
 	err := svr.Run()

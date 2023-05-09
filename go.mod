@@ -6,11 +6,12 @@ replace github.com/apache/thrift => github.com/apache/thrift v0.13.0
 
 require (
 	github.com/apache/thrift v0.13.0
+	github.com/bwmarrin/snowflake v0.3.0
 	github.com/cloudwego/kitex v0.5.2
+	github.com/coreos/etcd v3.3.13+incompatible
 )
 
 require (
-	github.com/bwmarrin/snowflake v0.3.0 // indirect
 	github.com/bytedance/go-tagexpr/v2 v2.9.2 // indirect
 	github.com/bytedance/gopkg v0.0.0-20220817015305-b879a72dc90f // indirect
 	github.com/bytedance/sonic v1.8.1 // indirect
