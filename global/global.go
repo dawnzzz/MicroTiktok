@@ -48,3 +48,16 @@ var (
 const (
 	HzViewerIDKey = "viewer_id"
 )
+
+const (
+	DefaultRpcUserServicePort = 6600 + iota
+	DefaultRpcVideoServicePort
+	DefaultRpcFavoriteServicePort
+	DefaultRpcCommentServicePort
+	DefaultRpcRelationServicePort
+	DefaultRpcMessageServicePort
+	DefaultRpcAuthenticationServicePort
+	DefaultRpcInteractServicePort
+	DefaultRpcSocietyServicePort
+	DefaultRpcIdGeneratorServicePort
+)

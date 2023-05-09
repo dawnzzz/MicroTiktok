@@ -1,6 +1,7 @@
 package main
 
 import (
+	"github.com/dawnzzz/MicroTiktok/global"
 	"github.com/dawnzzz/MicroTiktok/initialize"
 	"github.com/dawnzzz/MicroTiktok/internal/service/user/config"
 	"github.com/dawnzzz/MicroTiktok/model"
@@ -8,7 +9,7 @@ import (
 
 func InitUserConfig() {
 	config.UserConfigObj = &config.UserConfig{
-		Port: 6600,
+		Port: global.DefaultRpcUserServicePort,
 	}
 }
 
