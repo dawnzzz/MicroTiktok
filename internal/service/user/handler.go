@@ -9,6 +9,7 @@ import (
 	"github.com/dawnzzz/MicroTiktok/global"
 	"github.com/dawnzzz/MicroTiktok/kitex_gen/authentication"
 	"github.com/dawnzzz/MicroTiktok/kitex_gen/base"
+	"github.com/dawnzzz/MicroTiktok/kitex_gen/id_generator"
 	user "github.com/dawnzzz/MicroTiktok/kitex_gen/user"
 	"github.com/dawnzzz/MicroTiktok/model"
 	"github.com/dawnzzz/MicroTiktok/pkg/e"
@@ -20,9 +21,15 @@ type UserServiceImpl struct{}
 
 // Register implements the UserServiceImpl interface.
 func (s *UserServiceImpl) Register(ctx context.Context, req *user.UserRegisterRequest) (resp *user.UserRegisterResponse, err error) {
+	// 获取 user id
+	getUserIdResponse, err := global.RpcIdGeneratorClient.GetUserID(ctx, &id_generator.GetUserIdRequest{})
+	if err != nil {
+		return nil, err
+	}
+
 	// 尝试插入数据
 	u := &model.User{
-		UserID:   req.UserId,
+		UserID:   getUserIdResponse.UserId,
 		Name:     req.Username,
 		Password: encryptPassword(req.Username, req.Password),
 	}
@@ -38,7 +45,7 @@ func (s *UserServiceImpl) Register(ctx context.Context, req *user.UserRegisterRe
 
 	// 插入成功，请求RPC，申请token
 	generateTokenResponse, err := global.RpcAuthenticationClient.GenerateToken(ctx, &authentication.GenerateTokenRequest{
-		UserId: req.UserId,
+		UserId: getUserIdResponse.UserId,
 	})
 	if err != nil {
 		return nil, kerrors.NewBizStatusError(e.ErrAuthenticationRpcFailed, e.GetErrMsg(e.ErrAuthenticationRpcFailed))
@@ -50,7 +57,7 @@ func (s *UserServiceImpl) Register(ctx context.Context, req *user.UserRegisterRe
 			StatusCode: e.Success,
 			StatusMsg:  e.GetErrMsg(e.Success),
 		},
-		UserId: req.UserId,
+		UserId: getUserIdResponse.UserId,
 		Token:  generateTokenResponse.Token,
 	}, nil
 }

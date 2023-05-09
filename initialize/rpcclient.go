@@ -7,6 +7,7 @@ import (
 	"github.com/dawnzzz/MicroTiktok/kitex_gen/authentication/authenticationservice"
 	"github.com/dawnzzz/MicroTiktok/kitex_gen/comment/commentservice"
 	"github.com/dawnzzz/MicroTiktok/kitex_gen/favorite/favoriteservice"
+	"github.com/dawnzzz/MicroTiktok/kitex_gen/id_generator/idgeneratorservice"
 	"github.com/dawnzzz/MicroTiktok/kitex_gen/interact/interactservice"
 	"github.com/dawnzzz/MicroTiktok/kitex_gen/message/messageservice"
 	"github.com/dawnzzz/MicroTiktok/kitex_gen/relation/relationservice"
@@ -92,6 +93,14 @@ func InitRpcInteractClient() {
 func InitRpcSocietyClient() {
 	var err error
 	global.RpcSocietyClient, err = societyservice.NewClient(global.RpcSocietyServiceName, client.WithResolver(newEtcdResolver()))
+	if err != nil {
+		panic(err)
+	}
+}
+
+func InitRpcIdGeneratorClient() {
+	var err error
+	global.RpcIdGeneratorClient, err = idgeneratorservice.NewClient(global.RpcIdGeneratorServiceName, client.WithResolver(newEtcdResolver()))
 	if err != nil {
 		panic(err)
 	}

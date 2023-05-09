@@ -10,7 +10,7 @@ func init() {
 			Host:            "127.0.0.1",
 			Port:            3306,
 			User:            "root",
-			Password:        "123456",
+			Password:        "qwas617.",
 			DBName:          "micro_tiktok",
 			MaxIdleConns:    10,
 			MaxOpenConns:    100,

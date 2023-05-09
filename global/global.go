@@ -4,6 +4,7 @@ import (
 	"github.com/dawnzzz/MicroTiktok/kitex_gen/authentication/authenticationservice"
 	"github.com/dawnzzz/MicroTiktok/kitex_gen/comment/commentservice"
 	"github.com/dawnzzz/MicroTiktok/kitex_gen/favorite/favoriteservice"
+	"github.com/dawnzzz/MicroTiktok/kitex_gen/id_generator/idgeneratorservice"
 	"github.com/dawnzzz/MicroTiktok/kitex_gen/interact/interactservice"
 	"github.com/dawnzzz/MicroTiktok/kitex_gen/message/messageservice"
 	"github.com/dawnzzz/MicroTiktok/kitex_gen/relation/relationservice"
@@ -23,6 +24,7 @@ var (
 	RpcAuthenticationClient authenticationservice.Client
 	RpcInteractClient       interactservice.Client
 	RpcSocietyClient        societyservice.Client
+	RpcIdGeneratorClient    idgeneratorservice.Client
 )
 
 // RPC Service name

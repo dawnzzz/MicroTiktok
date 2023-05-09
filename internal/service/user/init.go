@@ -2,8 +2,15 @@ package main
 
 import (
 	"github.com/dawnzzz/MicroTiktok/initialize"
+	"github.com/dawnzzz/MicroTiktok/internal/service/user/config"
 	"github.com/dawnzzz/MicroTiktok/model"
 )
+
+func InitUserConfig() {
+	config.UserConfigObj = &config.UserConfig{
+		Port: 6600,
+	}
+}
 
 // InitDB 初始化数据库
 func InitDB() {
@@ -20,4 +27,7 @@ func InitRpcClient() {
 
 	// interact rpc
 	initialize.InitRpcInteractClient()
+
+	// id generator rpc
+	initialize.InitRpcIdGeneratorClient()
 }
