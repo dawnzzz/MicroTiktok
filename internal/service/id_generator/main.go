@@ -4,6 +4,7 @@ import (
 	"fmt"
 	"github.com/cloudwego/hertz/pkg/common/utils"
 	"github.com/cloudwego/kitex/pkg/rpcinfo"
+	"github.com/cloudwego/kitex/pkg/transmeta"
 	"github.com/cloudwego/kitex/server"
 	"github.com/dawnzzz/MicroTiktok/global"
 	"github.com/dawnzzz/MicroTiktok/internal/service/id_generator/config"
@@ -28,8 +29,11 @@ func main() {
 	}
 
 	svr := id_generator.NewServer(
-		new(IdGeneratorServiceImpl), server.WithServerBasicInfo(info), server.WithRegistry(r),
+		new(IdGeneratorServiceImpl),
 		server.WithServiceAddr(utils.NewNetAddr("tcp", fmt.Sprintf(":%v", config.IdGeneratorConfigObj.Port))),
+		server.WithServerBasicInfo(info),
+		server.WithRegistry(r),
+		server.WithMetaHandler(transmeta.ServerTTHeaderHandler),
 		server.WithMuxTransport(),
 	)
 

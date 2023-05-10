@@ -24,13 +24,13 @@ func (s *IdGeneratorServiceImpl) GetUserID(ctx context.Context, req *id_generato
 	if s.UserIDGenerator == nil {
 		// 饿汉式初始化
 		s.mutex.Lock()
+		defer s.mutex.Unlock()
 		if s.UserIDGenerator == nil {
 			s.UserIDGenerator, err = snowflake.NewNode(config.IdGeneratorConfigObj.NodeID)
 			if err != nil {
 				return nil, kerrors.NewBizStatusError(e.ErrUserIDGeneratorInitFailed, e.GetErrMsg(e.ErrUserIDGeneratorInitFailed))
 			}
 		}
-		s.mutex.Unlock()
 	}
 
 	return &id_generator.GetUserIdResponse{
@@ -47,13 +47,13 @@ func (s *IdGeneratorServiceImpl) GetVideoID(ctx context.Context, req *id_generat
 	if s.VideoIDGenerator == nil {
 		// 饿汉式初始化
 		s.mutex.Lock()
+		defer s.mutex.Unlock()
 		if s.VideoIDGenerator == nil {
 			s.VideoIDGenerator, err = snowflake.NewNode(config.IdGeneratorConfigObj.NodeID)
 			if err != nil {
 				return nil, kerrors.NewBizStatusError(e.ErrVideoIDGeneratorInitFailed, e.GetErrMsg(e.ErrVideoIDGeneratorInitFailed))
 			}
 		}
-		s.mutex.Unlock()
 	}
 
 	return &id_generator.GetVideoIdResponse{
@@ -70,13 +70,13 @@ func (s *IdGeneratorServiceImpl) GetCommentID(ctx context.Context, req *id_gener
 	if s.CommentIDGenerator == nil {
 		// 饿汉式初始化
 		s.mutex.Lock()
+		defer s.mutex.Unlock()
 		if s.CommentIDGenerator == nil {
 			s.CommentIDGenerator, err = snowflake.NewNode(config.IdGeneratorConfigObj.NodeID)
 			if err != nil {
 				return nil, kerrors.NewBizStatusError(e.ErrCommentIDGeneratorInitFailed, e.GetErrMsg(e.ErrCommentIDGeneratorInitFailed))
 			}
 		}
-		s.mutex.Unlock()
 	}
 
 	return &id_generator.GetCommentIdResponse{

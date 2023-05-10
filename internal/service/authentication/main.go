@@ -3,6 +3,7 @@ package main
 import (
 	"fmt"
 	"github.com/cloudwego/kitex/pkg/rpcinfo"
+	"github.com/cloudwego/kitex/pkg/transmeta"
 	"github.com/cloudwego/kitex/pkg/utils"
 	"github.com/cloudwego/kitex/server"
 	"github.com/dawnzzz/MicroTiktok/global"
@@ -27,8 +28,10 @@ func main() {
 	}
 
 	svr := authentication.NewServer(new(AuthenticationServiceImpl),
-		server.WithServerBasicInfo(info), server.WithRegistry(r),
 		server.WithServiceAddr(utils.NewNetAddr("tcp", fmt.Sprintf(":%v", config.AuthenticationConfigObj.Port))),
+		server.WithServerBasicInfo(info),
+		server.WithRegistry(r),
+		server.WithMetaHandler(transmeta.ServerTTHeaderHandler),
 		server.WithMuxTransport(),
 	)
 

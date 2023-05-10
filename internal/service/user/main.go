@@ -4,6 +4,7 @@ import (
 	"fmt"
 	"github.com/cloudwego/hertz/pkg/common/utils"
 	"github.com/cloudwego/kitex/pkg/rpcinfo"
+	"github.com/cloudwego/kitex/pkg/transmeta"
 	"github.com/cloudwego/kitex/server"
 	"github.com/dawnzzz/MicroTiktok/global"
 	"github.com/dawnzzz/MicroTiktok/internal/service/user/config"
@@ -31,8 +32,10 @@ func main() {
 	}
 
 	svr := user.NewServer(new(UserServiceImpl),
-		server.WithServerBasicInfo(info), server.WithRegistry(r),
 		server.WithServiceAddr(utils.NewNetAddr("tcp", fmt.Sprintf(":%v", config.UserConfigObj.Port))),
+		server.WithServerBasicInfo(info),
+		server.WithRegistry(r),
+		server.WithMetaHandler(transmeta.ServerTTHeaderHandler),
 		server.WithMuxTransport(),
 	)
 

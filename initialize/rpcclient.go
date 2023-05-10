@@ -3,6 +3,9 @@ package initialize
 import (
 	"github.com/cloudwego/kitex/client"
 	"github.com/cloudwego/kitex/pkg/discovery"
+	"github.com/cloudwego/kitex/pkg/loadbalance"
+	"github.com/cloudwego/kitex/pkg/transmeta"
+	"github.com/cloudwego/kitex/transport"
 	"github.com/dawnzzz/MicroTiktok/global"
 	"github.com/dawnzzz/MicroTiktok/kitex_gen/authentication/authenticationservice"
 	"github.com/dawnzzz/MicroTiktok/kitex_gen/comment/commentservice"
@@ -17,12 +20,16 @@ import (
 	etcd "github.com/kitex-contrib/registry-etcd"
 )
 
-func rpcClientOptions() []client.Option {
+func rpcClientOptions(serviceName string) []client.Option {
 	var options []client.Option
 	// 添加服务发现
 	options = append(options, client.WithResolver(newEtcdResolver()))
+	options = append(options, client.WithLoadBalancer(loadbalance.NewWeightedBalancer()))
 	// 添加多路复用
-	options = append(options, client.WithMuxConnection(1))
+	options = append(options, client.WithMuxConnection(2))
+	options = append(options, client.WithTransportProtocol(transport.TTHeader))
+	options = append(options, client.WithMetaHandler(transmeta.ClientTTHeaderHandler))
+	//options = append(options, client.WithClientBasicInfo(&rpcinfo.EndpointBasicInfo{ServiceName: serviceName}))
 
 	return options
 }
@@ -38,7 +45,7 @@ func newEtcdResolver() discovery.Resolver {
 
 func InitRpcUserClient() {
 	var err error
-	global.RpcUserClient, err = userservice.NewClient(global.RpcUserServiceName, rpcClientOptions()...)
+	global.RpcUserClient, err = userservice.NewClient(global.RpcUserServiceName, rpcClientOptions(global.RpcUserServiceName)...)
 	if err != nil {
 		panic(err)
 	}
@@ -46,7 +53,7 @@ func InitRpcUserClient() {
 
 func InitRpcVideoClient() {
 	var err error
-	global.RpcVideoClient, err = videoservice.NewClient(global.RpcVideoServiceName, rpcClientOptions()...)
+	global.RpcVideoClient, err = videoservice.NewClient(global.RpcVideoServiceName, rpcClientOptions(global.RpcVideoServiceName)...)
 	if err != nil {
 		panic(err)
 	}
@@ -54,7 +61,7 @@ func InitRpcVideoClient() {
 
 func InitRpcFavoriteClient() {
 	var err error
-	global.RpcFavoriteClient, err = favoriteservice.NewClient(global.RpcFavoriteServiceName, rpcClientOptions()...)
+	global.RpcFavoriteClient, err = favoriteservice.NewClient(global.RpcFavoriteServiceName, rpcClientOptions(global.RpcFavoriteServiceName)...)
 	if err != nil {
 		panic(err)
 	}
@@ -62,7 +69,7 @@ func InitRpcFavoriteClient() {
 
 func InitRpcCommentClient() {
 	var err error
-	global.RpcCommentClient, err = commentservice.NewClient(global.RpcCommentServiceName, rpcClientOptions()...)
+	global.RpcCommentClient, err = commentservice.NewClient(global.RpcCommentServiceName, rpcClientOptions(global.RpcCommentServiceName)...)
 	if err != nil {
 		panic(err)
 	}
@@ -70,7 +77,7 @@ func InitRpcCommentClient() {
 
 func InitRpcRelationClient() {
 	var err error
-	global.RpcRelationClient, err = relationservice.NewClient(global.RpcRelationServiceName, rpcClientOptions()...)
+	global.RpcRelationClient, err = relationservice.NewClient(global.RpcRelationServiceName, rpcClientOptions(global.RpcRelationServiceName)...)
 	if err != nil {
 		panic(err)
 	}
@@ -78,7 +85,7 @@ func InitRpcRelationClient() {
 
 func InitRpcMessageClient() {
 	var err error
-	global.RpcMessageClient, err = messageservice.NewClient(global.RpcMessageServiceName, rpcClientOptions()...)
+	global.RpcMessageClient, err = messageservice.NewClient(global.RpcMessageServiceName, rpcClientOptions(global.RpcMessageServiceName)...)
 	if err != nil {
 		panic(err)
 	}
@@ -86,7 +93,7 @@ func InitRpcMessageClient() {
 
 func InitRpcAuthenticationClient() {
 	var err error
-	global.RpcAuthenticationClient, err = authenticationservice.NewClient(global.RpcAuthenticationServiceName, rpcClientOptions()...)
+	global.RpcAuthenticationClient, err = authenticationservice.NewClient(global.RpcAuthenticationServiceName, rpcClientOptions(global.RpcAuthenticationServiceName)...)
 	if err != nil {
 		panic(err)
 	}
@@ -94,7 +101,7 @@ func InitRpcAuthenticationClient() {
 
 func InitRpcInteractClient() {
 	var err error
-	global.RpcInteractClient, err = interactservice.NewClient(global.RpcInteractServiceName, rpcClientOptions()...)
+	global.RpcInteractClient, err = interactservice.NewClient(global.RpcInteractServiceName, rpcClientOptions(global.RpcInteractServiceName)...)
 	if err != nil {
 		panic(err)
 	}
@@ -102,7 +109,7 @@ func InitRpcInteractClient() {
 
 func InitRpcSocietyClient() {
 	var err error
-	global.RpcSocietyClient, err = societyservice.NewClient(global.RpcSocietyServiceName, rpcClientOptions()...)
+	global.RpcSocietyClient, err = societyservice.NewClient(global.RpcSocietyServiceName, rpcClientOptions(global.RpcSocietyServiceName)...)
 	if err != nil {
 		panic(err)
 	}
@@ -110,7 +117,7 @@ func InitRpcSocietyClient() {
 
 func InitRpcIdGeneratorClient() {
 	var err error
-	global.RpcIdGeneratorClient, err = idgeneratorservice.NewClient(global.RpcIdGeneratorServiceName, rpcClientOptions()...)
+	global.RpcIdGeneratorClient, err = idgeneratorservice.NewClient(global.RpcIdGeneratorServiceName, rpcClientOptions(global.RpcIdGeneratorServiceName)...)
 	if err != nil {
 		panic(err)
 	}

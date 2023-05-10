@@ -22,9 +22,9 @@ type UserServiceImpl struct{}
 // Register implements the UserServiceImpl interface.
 func (s *UserServiceImpl) Register(ctx context.Context, req *user.UserRegisterRequest) (resp *user.UserRegisterResponse, err error) {
 	// 获取 user id
-	getUserIdResponse, err := global.RpcIdGeneratorClient.GetUserID(ctx, &id_generator.GetUserIdRequest{})
-	if err != nil {
-		return nil, err
+	getUserIdResponse, userIdErr := global.RpcIdGeneratorClient.GetUserID(ctx, &id_generator.GetUserIdRequest{})
+	if userIdErr != nil {
+		return nil, userIdErr
 	}
 
 	// 尝试插入数据
@@ -48,18 +48,20 @@ func (s *UserServiceImpl) Register(ctx context.Context, req *user.UserRegisterRe
 		UserId: getUserIdResponse.UserId,
 	})
 	if err != nil {
-		return nil, kerrors.NewBizStatusError(e.ErrAuthenticationRpcFailed, e.GetErrMsg(e.ErrAuthenticationRpcFailed))
+		return nil, err
 	}
 
 	// 申请token成功，返回
-	return &user.UserRegisterResponse{
+	resp = &user.UserRegisterResponse{
 		BaseResp: &base.BaseResponse{
 			StatusCode: e.Success,
 			StatusMsg:  e.GetErrMsg(e.Success),
 		},
 		UserId: getUserIdResponse.UserId,
 		Token:  generateTokenResponse.Token,
-	}, nil
+	}
+
+	return resp, nil
 }
 
 // Login implements the UserServiceImpl interface.
