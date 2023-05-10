@@ -7,6 +7,7 @@ const (
 const (
 	ErrUnknown = int32(iota) + 1000
 	ErrBadRequest
+	ErrUserNameOrPasswordWrong
 	ErrAuthenticationFailed
 	ErrGenerateTokenFailed
 	ErrDBError

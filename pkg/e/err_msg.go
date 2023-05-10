@@ -10,6 +10,7 @@ var errMsg = map[int32]string{
 	ErrUnknown:                 "未知的错误",
 	ErrBadRequest:              "请求参数错误",
 	ErrAuthenticationFailed:    "用户身份验证失败，请重新登录",
+	ErrUserNameOrPasswordWrong: "用户名或者密码错误，请重新输入",
 	ErrGenerateTokenFailed:     "生成token失败，请重试",
 	ErrDBError:                 "数据库错误，请稍后重试",
 	ErrUserRpcFailed:           "User RPC 请求失败",

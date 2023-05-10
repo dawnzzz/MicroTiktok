@@ -66,7 +66,36 @@ func (s *UserServiceImpl) Register(ctx context.Context, req *user.UserRegisterRe
 
 // Login implements the UserServiceImpl interface.
 func (s *UserServiceImpl) Login(ctx context.Context, req *user.UserLoginRequest) (resp *user.UserLoginResponse, err error) {
-	// TODO: Your code here...
+	// 在数据库中查找用户
+	u := &model.User{}
+	err = u.FindOneByPasswordAndUserName(req.Username, encryptPassword(req.Username, req.Password))
+	if err != nil {
+		if errors.Is(err, gorm.ErrRecordNotFound) {
+			// 找不到用户，用户名密码错误
+			return nil, kerrors.NewBizStatusError(e.ErrUserNameOrPasswordWrong, e.GetErrMsg(e.ErrUserNameOrPasswordWrong))
+		}
+
+		return nil, kerrors.NewBizStatusError(e.ErrDBError, e.GetErrMsg(e.ErrDBError))
+	}
+
+	// 用户名和密码正确，申请token
+	generateTokenResponse, err := global.RpcAuthenticationClient.GenerateToken(ctx, &authentication.GenerateTokenRequest{
+		UserId: u.UserID,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	// 登录成功，返回
+	resp = &user.UserLoginResponse{
+		BaseResp: &base.BaseResponse{
+			StatusCode: e.Success,
+			StatusMsg:  e.GetErrMsg(e.Success),
+		},
+		UserId: u.UserID,
+		Token:  generateTokenResponse.Token,
+	}
+
 	return
 }
 
