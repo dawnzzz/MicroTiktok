@@ -13,6 +13,6 @@ func InitIdGeneratorConfig() {
 	rand.Seed(time.Now().Unix())
 	config.IdGeneratorConfigObj = &config.IdGeneratorConfig{
 		Port:   global.DefaultRpcIdGeneratorServicePort,
-		NodeID: rand.Int63() % (2 << snowflake.NodeBits),
+		NodeID: rand.Int63() % (1 << snowflake.NodeBits),
 	}
 }

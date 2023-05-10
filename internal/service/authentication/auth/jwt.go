@@ -2,7 +2,6 @@ package auth
 
 import (
 	"errors"
-	"fmt"
 	"github.com/dawnzzz/MicroTiktok/internal/service/authentication/config"
 	"github.com/dgrijalva/jwt-go"
 	"time"
@@ -23,8 +22,7 @@ func GetToken(userID int64) (string, error) {
 	}
 
 	token := jwt.NewWithClaims(jwt.SigningMethodHS256, cla)
-	fmt.Println("Token = ", token)
-	return token.SignedString(config.AuthenticationConfigObj.Secret) // 进行签名生成对应的token
+	return token.SignedString([]byte(config.AuthenticationConfigObj.Secret)) // 进行签名生成对应的token
 }
 
 // ParseToken 解析token
