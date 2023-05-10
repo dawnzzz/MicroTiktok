@@ -27,6 +27,7 @@ func rpcClientOptions(serviceName string) []client.Option {
 	options = append(options, client.WithLoadBalancer(loadbalance.NewWeightedBalancer()))
 	// 添加多路复用
 	options = append(options, client.WithMuxConnection(2))
+	// 设置TTHeader传输协议
 	options = append(options, client.WithTransportProtocol(transport.TTHeader))
 	options = append(options, client.WithMetaHandler(transmeta.ClientTTHeaderHandler))
 	//options = append(options, client.WithClientBasicInfo(&rpcinfo.EndpointBasicInfo{ServiceName: serviceName}))
